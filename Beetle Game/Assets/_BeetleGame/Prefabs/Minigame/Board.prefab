@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &743093613153461644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743093613153461646}
+  - component: {fileID: 743093613153461645}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &743093613153461646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743093613153461644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &743093613153461645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743093613153461644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725dbfad1596cab4e95bab8447d90b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReplayButton: {fileID: 0}
+  Result: {fileID: 0}
+  goalPos: ac000000ad000000ae000000a3000000
+  obstaclePos: 3300000034000000350000003600000060000000610000006a0000006b000000
+  width: 10
+  height: 19
+  playerTilePrefab:
+  - {fileID: 9162694535485563496, guid: ad8cd24d0f6e9a049b343dceae35ab87, type: 3}
+  - {fileID: 977400080589935459, guid: c719bdb123f4cb84098dff229a745144, type: 3}
+  tilePrefab: {fileID: -4319951517209099990, guid: 16e0f70e1ba2ab44cad886d248609c59,
+    type: 3}
