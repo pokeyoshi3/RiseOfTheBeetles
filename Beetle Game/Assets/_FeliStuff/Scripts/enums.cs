@@ -39,6 +39,24 @@ public enum eMinigameState
     ready,
     paused,     
     running, 
-    Lose, 
-    Win 
+    normalWin,
+    bestWin,
+    lose
+}
+
+
+public enum BeatState 
+{ 
+    wrong = 0, 
+    right = 1, 
+    pending = 2, 
+    triggerable = 3
+}
+
+public enum BeatInput
+{
+    up,
+    down,
+    left,
+    right
 }

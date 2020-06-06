@@ -5,10 +5,10 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {    
     //HACK temporary ui bullshit for gate 1
-    [SerializeField]
-    private UnityEngine.UI.Text playerResValue;
-    [SerializeField]
-    private UnityEngine.UI.Text baseResValue;
+    //[SerializeField]
+    //private UnityEngine.UI.Text playerResValue;
+    //[SerializeField]
+    //private UnityEngine.UI.Text baseResValue;
 
     protected GameManager() { }
     public eGameState GameState { get; protected set; }
@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     {
         ResourcesInBase += ResourcesOnPlayer;
         ResourcesOnPlayer = 0;
-        UpdateResourceUI();
+        //UpdateResourceUI();
     }
 
     public void UpdatePlayerResources(int value, bool gain)
@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
         else
             ResourcesOnPlayer -= value;
 
-        UpdateResourceUI();
+        //UpdateResourceUI();
     }
 
     public void ChangeGameState(eGameState newGameState)
@@ -48,10 +48,10 @@ public class GameManager : Singleton<GameManager>
         GameState = newGameState;
     }
 
-    private void UpdateResourceUI()
-    {
-        playerResValue.text = ResourcesOnPlayer.ToString();
-        baseResValue.text = ResourcesInBase.ToString();
-    }
+    //    private void UpdateResourceUI()
+    //    {
+    //        playerResValue.text = ResourcesOnPlayer.ToString();
+    //        baseResValue.text = ResourcesInBase.ToString();
+    //    }
 }
 

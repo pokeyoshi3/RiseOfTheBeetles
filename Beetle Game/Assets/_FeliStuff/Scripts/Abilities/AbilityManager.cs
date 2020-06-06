@@ -11,7 +11,7 @@ public class AbilityManager : Singleton<AbilityManager>
     public int activeAbilities { get; protected set; }
 
     //HACK temp for gate 1
-    public CanvasGroup BlackScreen;
+    //public CanvasGroup BlackScreen;
     private SpriteRenderer playerSprite;
     public Sprite GumbaPlayer;
     public Sprite WingPlayer;
@@ -44,7 +44,7 @@ public class AbilityManager : Singleton<AbilityManager>
         playerSprite = player.GetComponentInChildren<SpriteRenderer>();
         playerSprite.sprite = GumbaPlayer;
         player.HasWings = player.HasHorns = player.HasFins = player.HasClaws = false;
-        Board.OnGameEnd += ToggleAbilityActive;
+        //Board.OnGameEnd += ToggleAbilityActive;
     }
 
     public void WriteAbilityList()
@@ -129,11 +129,11 @@ public class AbilityManager : Singleton<AbilityManager>
 
         yield return new WaitForSeconds(0.25f);
 
-        while (BlackScreen.alpha > 0.0f)
-        {
-            BlackScreen.alpha -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
-        }
+        //while (BlackScreen.alpha > 0.0f)
+        //{
+        //    BlackScreen.alpha -= 0.1f;
+        //    yield return new WaitForSeconds(0.1f);
+        //}
         GameManager.Instance.ChangeGameState(eGameState.running);
     }
 
