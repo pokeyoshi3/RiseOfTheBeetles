@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a28e66bf8ee9e4f9b39b5d4260a5c9, type: 3}
+  m_Name: Segment4_QueenBee
+  m_EditorClassIdentifier: 
+  Beats:
+  - {fileID: 5114327107814355513, guid: 16abe3081d9b95d40a2cda34005d208d, type: 3}
+  - {fileID: 5114327107814355513, guid: e68d629deb9002f47bfeade3bb7f0691, type: 3}
+  - {fileID: 5114327107814355513, guid: 181bb2204056f5f4e82ff514e7296267, type: 3}
+  - {fileID: 5114327107814355513, guid: 914230f0efd0ad74f81ed800798a03b1, type: 3}
+  - {fileID: 5114327107814355513, guid: 16abe3081d9b95d40a2cda34005d208d, type: 3}

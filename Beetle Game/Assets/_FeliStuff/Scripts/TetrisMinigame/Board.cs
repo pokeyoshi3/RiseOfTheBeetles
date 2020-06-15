@@ -163,11 +163,13 @@ public class Board : MonoBehaviour
     {
         if (win)
         {
-            ChangeGameState(eMinigameState.Win);
+            print("u win");
+            //ChangeGameState(eMinigameState.Win);
         }
         else
         {
-            ChangeGameState(eMinigameState.Lose);
+            print("u lose");
+            //ChangeGameState(eMinigameState.Lose);
         }
         print(State.ToString());
 

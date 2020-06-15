@@ -55,8 +55,8 @@ public enum BeatState
 
 public enum BeatInput
 {
-    up,
-    down,
-    left,
-    right
+    up = 0,
+    down = 1,
+    left = 2,
+    right = 3
 }

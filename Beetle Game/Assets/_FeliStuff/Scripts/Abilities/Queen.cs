@@ -8,6 +8,13 @@ public class Queen : MonoBehaviour
     public CanvasGroup BlackScreen;
     public GameObject Tetrisboard;
 
+    [Tooltip("Scriptable Objects containing possible segments for this queens minigame")]
+    public BeatSegment[] BeatSegments;
+
+
+
+    [SerializeField]
+    private int BPM = 12;
     [SerializeField]
     private eAbility ability;
     [SerializeField]
@@ -22,7 +29,7 @@ public class Queen : MonoBehaviour
     public bool Unlocked { get { return AM.IsAbilityUnlocked(Ability); } }
     public int UnlockCost { get { return unlockCost; } }
 
-    public static event System.Action<eAbility> OnMinigameStart = delegate { };
+    public static event System.Action<BeatSegment[], int> OnMinigameStart = delegate { };
 
     private void Start()
     {
@@ -41,7 +48,7 @@ public class Queen : MonoBehaviour
 
                 if (Unlocked && !AM.IsAbilityActive(Ability))
                     StartCoroutine(StartMinigame());
-                else if (!Unlocked && (GameManager.Instance.ResourcesInBase >= UnlockCost))
+                else //if (!Unlocked && (GameManager.Instance.ResourcesInBase >= UnlockCost))
                     Unlock();
             }
         }
@@ -76,22 +83,22 @@ public class Queen : MonoBehaviour
     public IEnumerator StartMinigame()
     {
         GameManager.Instance.ChangeGameState(eGameState.minigame);
-        while(BlackScreen.alpha < 1.0f)
-        {
-            BlackScreen.alpha += 0.1f;
-            yield return new WaitForSeconds(0.1f);
-        }
+        //while(BlackScreen.alpha < 1.0f)
+        //{
+        //    BlackScreen.alpha += 0.1f;
+        //    yield return new WaitForSeconds(0.1f);
+        //}
 
-        Tetrisboard.SetActive(true);
+        //Tetrisboard.SetActive(true);
 
-        OnMinigameStart(ability);
+        OnMinigameStart(BeatSegments, BPM);
         yield return new WaitForSeconds(0.25f);
 
-        while (BlackScreen.alpha > 0.0f)
-        {
-            BlackScreen.alpha -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
-        }
+        //while (BlackScreen.alpha > 0.0f)
+        //{
+        //    BlackScreen.alpha -= 0.1f;
+        //    yield return new WaitForSeconds(0.1f);
+        //}
 
         //UnityEngine.SceneManagement.SceneManager.LoadScene("Minigame", UnityEngine.SceneManagement.LoadSceneMode.Additive);
         //yield return null;
