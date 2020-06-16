@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BeatController : MonoBehaviour
 {
@@ -29,10 +30,11 @@ public class BeatController : MonoBehaviour
     //up = 0, down = 1, left = 2, right = 3
     private Sprite[] buttonImages;
     [SerializeField]
-    private RectTransform dotParent;
+    private RectTransform dotSpawn;
 
-    private float secsPerBeat;
-    private float movePerSec;
+
+    private float timePerStep;
+    private float movePerStep;
     private bool lerping = false;
 
 
@@ -43,8 +45,8 @@ public class BeatController : MonoBehaviour
 
     private void Update()
     {
-        if (lerping)
-            LerpBar();
+        //if (lerping)
+        //    LerpBar();
 
         if (state == eMinigameState.running)
         {
@@ -85,15 +87,15 @@ public class BeatController : MonoBehaviour
     private void GetQueenInfo(BeatSegment[] possibleBeatSegments, int BPM)
     {
         beatsPerMinute = BPM;
-        secsPerBeat = 60 / beatsPerMinute;
-        movePerSec = distBetweenDots / secsPerBeat;
+        timePerStep = (60.0f / beatsPerMinute) / 50.0f;
+        movePerStep = distBetweenDots / 50.0f;
 
         List<BeatDot> dots = new List<BeatDot>();
         for (int i = 0; i < maxSegmentsPerGame; i++)
         {
             int rand = Random.Range(0, possibleBeatSegments.Length - 1);
-            print("rand "+ rand);
-            print("segs in list " + possibleBeatSegments.Length);
+            //print("rand " + rand);
+            //print("segs in list " + possibleBeatSegments.Length);
             BeatDot[] dotSeg = possibleBeatSegments[rand].Beats;
             dots.AddRange(dotSeg);
         }
@@ -108,8 +110,11 @@ public class BeatController : MonoBehaviour
         for (int i = 0; i < allDots.Length; i++)
         {
             //spawn dot object and set image
-            BeatDot newDot = Instantiate(allDots[i], dotParent.transform);
+            BeatDot newDot = Instantiate(allDots[i], dotSpawn.transform);
+            newDot.gameObject.name = "Dot_" + i;
+            newDot.SetDotState(BeatState.pending);
             newDot.SetButtonImage(buttonImages[newDot.ButtonImage()]);
+            newDot.SetPos(new Vector2(i * distBetweenDots, 0f));
         }
         StartCoroutine(StartCounter());
     }
@@ -118,10 +123,19 @@ public class BeatController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         //show a countdown for start
-        yield return null;
+
+        bool noInput = true;
+
+        while (noInput)
+        {
+            yield return null;
+            if (Input.anyKey)
+                noInput = false;
+        }       
+
         SetState(eMinigameState.running);
-        //StartCoroutine(MoveBar());
-        lerping = true;
+        StartCoroutine(MoveBar());
+        //lerping = true;
     }
 
     //One of the arrow keys has been pressed
@@ -130,7 +144,7 @@ public class BeatController : MonoBehaviour
         if (Input.GetButtonDown("up") || Input.GetButtonDown("down") || Input.GetButtonDown("left") || Input.GetButtonDown("right"))
         {
             lastInput = Input.inputString;
-            print("lastinput = "+ lastInput);
+            print("lastinput = " + lastInput);
             return true;
         }
         else
@@ -154,24 +168,34 @@ public class BeatController : MonoBehaviour
         }
     }
 
-    private void LerpBar()
+    private IEnumerator MoveBar()
     {
-        if (state == eMinigameState.paused)
+        print("start moving all dots");
+
+        while (state == eMinigameState.running)
         {
-            //pause music and bar movement, dont allow input
+
+            if (state == eMinigameState.paused)
+            {
+                //pause music and bar movement, dont allow input
+                yield return null;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                state = eMinigameState.paused;
+                yield return null;
+            }
+
+            foreach(BeatDot dot in allDots)
+            {
+                dot.MoveDotOneStep(movePerStep);
+            }
+
+            //Vector2 newPos = new Vector2(dotParent.transform.position.x - movePerStep, dotParent.transform.position.y);
+            //dotParent.transform.position = newPos;
+            yield return new WaitForSeconds(timePerStep);
         }
-
-        calculatestep
-        return (Mathf.Abs(end - start) / totalSteps);
-
-
-        newPos = new Vector2(curPos.x - stepX, curPos.y);
-        coinPos.anchoredPosition = newPos;
-        curPos = newPos;
-        //print("new pos: " + newPos);
-        yield return new WaitForSeconds(timeUnit);
-
-
         //float timer = 0.0f;
         //TestTimer.text = timer.ToString();
 
