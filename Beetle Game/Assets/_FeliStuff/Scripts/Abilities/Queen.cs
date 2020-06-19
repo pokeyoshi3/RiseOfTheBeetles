@@ -14,7 +14,9 @@ public class Queen : MonoBehaviour
 
 
     [SerializeField]
-    private int BPM = 12;
+    public Animator anim;
+    [SerializeField]
+    private int BPM = 120;
     [SerializeField]
     private eAbility ability;
     [SerializeField]
@@ -29,7 +31,13 @@ public class Queen : MonoBehaviour
     public bool Unlocked { get { return AM.IsAbilityUnlocked(Ability); } }
     public int UnlockCost { get { return unlockCost; } }
 
-    public static event System.Action<BeatSegment[], int> OnMinigameStart = delegate { };
+    public static event System.Action<BeatSegment[], int, eAbility> OnMinigameStart = delegate { };
+
+    private void Awake()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
+
 
     private void Start()
     {
@@ -91,7 +99,7 @@ public class Queen : MonoBehaviour
 
         //Tetrisboard.SetActive(true);
 
-        OnMinigameStart(BeatSegments, BPM);
+        OnMinigameStart(BeatSegments, BPM, ability);
         yield return new WaitForSeconds(0.25f);
 
         //while (BlackScreen.alpha > 0.0f)

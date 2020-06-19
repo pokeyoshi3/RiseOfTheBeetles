@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,21 +9,26 @@ public class BeatController : MonoBehaviour
 {
     public UnityEngine.UI.Text TestTimer;
 
+    [SerializeField]
+    [Tooltip("Same as abilities: wings = 0, horn = 1, water = 2, claw = 3")]
+    private Animator[] queenAnims;
+
+    private Animator curAnim;
 
     [SerializeField]
     private int maxSegmentsPerGame = 5;
     [SerializeField]
-    private int beatsPerMinute = 12;
+    private int beatsPerMinute = 100;
     [SerializeField]
     private float distBetweenDots = 250.0f;
     [SerializeField]
     private int songLength;
-    [SerializeField]
-    private string lastInput;
+    //[SerializeField]
+    //private string lastInput;
     [SerializeField]
     private eMinigameState state;
     [SerializeField]
-    private int curDot;
+    private BeatDot curDot;
     [SerializeField]
     private BeatDot[] allDots;
     [SerializeField]
@@ -32,7 +38,6 @@ public class BeatController : MonoBehaviour
     [SerializeField]
     private RectTransform dotSpawn;
 
-
     private float timePerStep;
     private float movePerStep;
     private bool lerping = false;
@@ -41,41 +46,86 @@ public class BeatController : MonoBehaviour
     private void Start()
     {
         Queen.OnMinigameStart += GetQueenInfo;
+        BeatDot.NextDotInLine += SetCurDot;
+    }
+
+    private void SetCurDot(int dotID)
+    {
+        if (dotID > allDots.Length - 1)            
+            return;
+
+        curDot = allDots[dotID];
     }
 
     private void Update()
     {
-        //if (lerping)
-        //    LerpBar();
-
         if (state == eMinigameState.running)
         {
-            if (Input.anyKeyDown)
+            if (Input.GetButtonDown("up"))
             {
-                switch (allDots[curDot].state)
+                if (WasInputCorrect("up"))
                 {
-                    case BeatState.wrong:
-                        return;
-                    case BeatState.right:
-                        return;
-                    case BeatState.pending:
-                        //not triggerable so input makes dot wrong
-                        allDots[curDot].SetDotState(BeatState.wrong);
-                        break;
-                    case BeatState.triggerable:
-                        //check if button was right and set to wrong/right
-                        if (AllowedPlayerInput())
-                        {
-                            if (WasInputCorrect())
-                                allDots[curDot].SetDotState(BeatState.right);
-                            else
-                                allDots[curDot].SetDotState(BeatState.wrong);
-                        }
-                        break;
-                    default:
-                        return;
+                    curDot.SetDotState(BeatState.right);
+                }
+                else
+                {
+                    curDot.SetDotState(BeatState.wrong);
                 }
             }
+            else if (Input.GetButtonDown("down"))
+            {
+                if (WasInputCorrect("down"))
+                {
+                    curDot.SetDotState(BeatState.right);
+                }
+                else
+                {
+                    curDot.SetDotState(BeatState.wrong);
+                }
+            }
+            else if (Input.GetButtonDown("left"))
+            {
+                if (WasInputCorrect("left"))
+                {
+                    curDot.SetDotState(BeatState.right);
+                }
+                else
+                {
+                    curDot.SetDotState(BeatState.wrong);
+                }
+            }
+            else if (Input.GetButtonDown("right"))
+            {
+                if (WasInputCorrect("right"))
+                {
+                    curDot.SetDotState(BeatState.right);
+                }
+                else
+                {
+                    curDot.SetDotState(BeatState.wrong);
+                }
+            }
+            else if (Input.anyKeyDown)
+            {
+                curDot.SetDotState(BeatState.wrong);
+            }        
+        }
+    }
+
+    private bool WasInputCorrect(string lastInput)
+    {
+        switch (curDot.state)
+        {
+            case BeatState.wrong:
+                return false;
+            case BeatState.right:
+                return true;
+            case BeatState.pending:
+                return false;
+            case BeatState.triggerable:
+                return curDot.ButtonToPress() == lastInput ? true : false;
+            default:
+                return false;
         }
     }
 
@@ -84,8 +134,9 @@ public class BeatController : MonoBehaviour
         this.state = state;
     }
 
-    private void GetQueenInfo(BeatSegment[] possibleBeatSegments, int BPM)
+    private void GetQueenInfo(BeatSegment[] possibleBeatSegments, int BPM, eAbility ability)
     {
+        curAnim = queenAnims[(int)ability];
         beatsPerMinute = BPM;
         timePerStep = (60.0f / beatsPerMinute) / 50.0f;
         movePerStep = distBetweenDots / 50.0f;
@@ -97,7 +148,7 @@ public class BeatController : MonoBehaviour
             //print("rand " + rand);
             //print("segs in list " + possibleBeatSegments.Length);
             BeatDot[] dotSeg = possibleBeatSegments[rand].Beats;
-            dots.AddRange(dotSeg);
+            dots.AddRange(dotSeg);            
         }
         allDots = dots.ToArray();
         SpawnBeats();
@@ -106,16 +157,17 @@ public class BeatController : MonoBehaviour
     private void SpawnBeats()
     {
         SetState(eMinigameState.paused);
-        curDot = 0;
         for (int i = 0; i < allDots.Length; i++)
         {
             //spawn dot object and set image
             BeatDot newDot = Instantiate(allDots[i], dotSpawn.transform);
             newDot.gameObject.name = "Dot_" + i;
             newDot.SetDotState(BeatState.pending);
-            newDot.SetButtonImage(buttonImages[newDot.ButtonImage()]);
-            newDot.SetPos(new Vector2(i * distBetweenDots, 0f));
+            newDot.DotSetup(i, buttonImages[newDot.ButtonImage()]);
+            newDot.SetPos(new Vector2(i * distBetweenDots, -75f));
+            allDots[i] = newDot;
         }
+        curDot = allDots[0];
         StartCoroutine(StartCounter());
     }
 
@@ -135,37 +187,6 @@ public class BeatController : MonoBehaviour
 
         SetState(eMinigameState.running);
         StartCoroutine(MoveBar());
-        //lerping = true;
-    }
-
-    //One of the arrow keys has been pressed
-    private bool AllowedPlayerInput()
-    {
-        if (Input.GetButtonDown("up") || Input.GetButtonDown("down") || Input.GetButtonDown("left") || Input.GetButtonDown("right"))
-        {
-            lastInput = Input.inputString;
-            print("lastinput = " + lastInput);
-            return true;
-        }
-        else
-            return false;
-    }
-
-    private bool WasInputCorrect()
-    {
-        switch (allDots[curDot].state)
-        {
-            case BeatState.wrong:
-                return false;
-            case BeatState.right:
-                return true;
-            case BeatState.pending:
-                return false;
-            case BeatState.triggerable:
-                return allDots[curDot].ButtonToPress() == lastInput ? true : false;
-            default:
-                return false;
-        }
     }
 
     private IEnumerator MoveBar()
@@ -191,32 +212,7 @@ public class BeatController : MonoBehaviour
             {
                 dot.MoveDotOneStep(movePerStep);
             }
-
-            //Vector2 newPos = new Vector2(dotParent.transform.position.x - movePerStep, dotParent.transform.position.y);
-            //dotParent.transform.position = newPos;
             yield return new WaitForSeconds(timePerStep);
         }
-        //float timer = 0.0f;
-        //TestTimer.text = timer.ToString();
-
-        //while (state == eMinigameState.running)
-        //{
-        //    if (state == eMinigameState.paused)
-        //    {
-        //        //pause music and movement
-        //        yield return null;
-        //    }
-        //    else
-        //    {
-        //        timer += Time.deltaTime;
-        //        TestTimer.text = timer.ToString();
-        //        //move bar and play music               
-        //        dotParent.transform.position = new Vector3(dotParent.transform.position.x - movePerSec, dotParent.transform.position.y, dotParent.transform.position.z);                    
-        //        yield return new WaitForSeconds(1.0f);
-        //        timer += Time.deltaTime;
-        //        TestTimer.text = timer.ToString();
-        //    }
-        //}
-        //yield return null;
     }
 }

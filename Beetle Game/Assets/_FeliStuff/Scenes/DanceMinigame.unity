@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 1152554220}
   - component: {fileID: 1152554219}
   - component: {fileID: 1152554221}
+  - component: {fileID: 1152554222}
   m_Layer: 5
   m_Name: Minigame
   m_TagString: Untagged
@@ -366,13 +367,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestTimer: {fileID: 545340474}
+  queenAnims: []
   maxSegmentsPerGame: 5
-  beatsPerMinute: 0
+  beatsPerMinute: 120
   distBetweenDots: 250
   songLength: 0
-  lastInput: 
   state: 0
-  curDot: 0
+  curDot: {fileID: 0}
   allDots: []
   buttonImages:
   - {fileID: 21300000, guid: 3d0fa2b7f04b4f247839d27f5a2eed0d, type: 3}
@@ -380,6 +381,102 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3bbda217b901224584915550e1fb36a, type: 3}
   - {fileID: 21300000, guid: 264cb1f17e27a274494f654a6ea77a18, type: 3}
   dotSpawn: {fileID: 2109382066}
+--- !u!82 &1152554222
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152554217}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8d9bc4245e3af1a4f97d198623b1a5cc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1252354229
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: -75}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1252354231
@@ -430,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.11046505, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 0, b: 0.95919466, a: 0.39215687}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -866,6 +963,7 @@ MonoBehaviour:
   BlackScreen: {fileID: 0}
   Tetrisboard: {fileID: 0}
   BeatSegments: []
+  anim: {fileID: 0}
   BPM: 12
   ability: 1
   unlockInfo: {fileID: 148810454634698966}
@@ -993,7 +1091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &148810452862160896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4042,6 +4140,7 @@ GameObject:
   - component: {fileID: 5294719161618600118}
   - component: {fileID: 5294719161618600116}
   - component: {fileID: 5294719161618600117}
+  - component: {fileID: 5294719161618600114}
   m_Layer: 2
   m_Name: QueenBee
   m_TagString: Untagged
@@ -4049,6 +4148,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &5294719161618600114
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294719161618600113}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5294719161618600116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4068,7 +4186,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92d603309a74e2746be69455ffacd92b, type: 2}
   - {fileID: 11400000, guid: f1683c17f9878294bb7404fef9a79ca0, type: 2}
   - {fileID: 11400000, guid: 2bb187f5731c84b489ba1b94d5cfb078, type: 2}
-  BPM: 12
+  anim: {fileID: 0}
+  BPM: 100
   ability: 0
   unlockInfo: {fileID: 5294719160423075232}
   matingInfo: {fileID: 5294719160524183553}
