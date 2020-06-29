@@ -19,7 +19,6 @@ public class Grounder : MonoBehaviour
     private Coroutine coyote;
     private bool wasGrounded = false;
     public bool coyoteRunning = false;
-    
 
     private void Update()
     {
@@ -43,7 +42,7 @@ public class Grounder : MonoBehaviour
         groundedObjects = Physics2D.OverlapCircleAll(transform.position, transform.localScale.x, ignoreCollision);
         grounded = (groundedObjects.Length > 0);
 
-        if(grounded != wasGrounded) //did something change?
+        if (grounded != wasGrounded) //did something change?
         {
             if (!grounded) //yes, we left the ground
             {
