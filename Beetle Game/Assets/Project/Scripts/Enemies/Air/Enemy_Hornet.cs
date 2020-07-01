@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Wasp : IEnemy
+public class Enemy_Hornet : IEnemy
 {
-    [Header("Wasp Setup")]
-    public float walkSpeed;
+    [Header("Hornet Setup")]
+    public float dashSpeed;
+    public float dashTime;
     [Range(0, 100)]
     public float boundaryLeft;
     [Range(0, 100)]
@@ -21,6 +22,7 @@ public class Enemy_Wasp : IEnemy
     int direction { get { return (turned ? -1 : 1); } }
     bool gotStomped = false;
     float projectileTimer;
+    float dashTimer;
 
 
     // Start is called before the first frame update
@@ -32,11 +34,10 @@ public class Enemy_Wasp : IEnemy
 
     // Update is called once per frame
     protected override void Update()
-    {        
+    {
         Turn();
         Walk();
-
-        if(playerIsInRange(distanceTrigger))
+        if (playerIsInRange(distanceTrigger))
         {
             Shoot();
         }
@@ -52,15 +53,21 @@ public class Enemy_Wasp : IEnemy
 
     void Walk()
     {
-        moveCon.Walk(walkSpeed * direction, 0.3f);
+        dashTimer += Time.deltaTime;
+
+        if(dashTimer >= dashTime)
+        {
+            moveCon.AddPlayerForceNow(new PlayerForce(new Vector3(direction, Random.Range(-1.0f, 1.0f)) * dashSpeed, ForceMode2D.Impulse, 0.20f, true, true));
+            dashTimer = 0;
+        }
     }
 
     void Shoot()
     {
         projectileTimer += Time.deltaTime;
 
-        if(projectileTimer >= spawnTime)
-        { 
+        if (projectileTimer >= spawnTime)
+        {
             GameObject bullet = Instantiate(projectile, projectileSpawn) as GameObject;
             bullet.transform.SetParent(null);
 

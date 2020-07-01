@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1402434fc133a6241906c491b6fa859d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 4
   damageOnAttack: 1
   distanceTrigger: 10
   gravity: 0

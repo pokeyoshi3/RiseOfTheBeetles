@@ -115,11 +115,11 @@ public class MovementController : MonoBehaviour
     {
         forceRunning = true;
         canFlip = pf.flip;
-        //Vector2 savedVel = rigid.velocity;
+        Vector2 savedVel = rigid.velocity;
         rigid.velocity = Vector2.zero;
         rigid.AddForce(pf.force, pf.forceMode);
         yield return new WaitForSeconds(pf.time);
-        //rigid.velocity = savedVel;
+        if (pf.preserveMovement) { rigid.velocity = savedVel; }
         canFlip = true;
         forceRunning = false;
     }
@@ -163,12 +163,14 @@ public struct PlayerForce
     public ForceMode2D forceMode;
     public float time;
     public bool flip;
+    public bool preserveMovement;
 
-    public PlayerForce(Vector2 force, ForceMode2D forceMode, float time, bool flip)
+    public PlayerForce(Vector2 force, ForceMode2D forceMode, float time, bool flip, bool preserveMovement)
     {
         this.force = force;
         this.forceMode = forceMode;
         this.time = time;
         this.flip = flip;
+        this.preserveMovement = preserveMovement;
     }
 };

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Wasp : IEnemy
+public class Enemy_Pufferfish : IEnemy
 {
     [Header("Wasp Setup")]
     public float walkSpeed;
@@ -32,11 +32,10 @@ public class Enemy_Wasp : IEnemy
 
     // Update is called once per frame
     protected override void Update()
-    {        
+    {
         Turn();
         Walk();
-
-        if(playerIsInRange(distanceTrigger))
+        if (playerIsInRange(distanceTrigger))
         {
             Shoot();
         }
@@ -59,31 +58,16 @@ public class Enemy_Wasp : IEnemy
     {
         projectileTimer += Time.deltaTime;
 
-        if(projectileTimer >= spawnTime)
-        { 
-            GameObject bullet = Instantiate(projectile, projectileSpawn) as GameObject;
-            bullet.transform.SetParent(null);
+        if (projectileTimer >= spawnTime)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                GameObject bullet = Instantiate(projectile, projectileSpawn.position, Quaternion.Euler(0, 0, i * 45), null) as GameObject;
+            }
 
             projectileTimer = 0;
         }
     }
-
-    public void StompDamage(int damage)
-    {
-        if (!gotStomped)
-        {
-            ApplyDamage(damage);
-            StartCoroutine(WaitForStompTime(0.2f));
-            gotStomped = true;
-        }
-    }
-
-    private IEnumerator WaitForStompTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        gotStomped = false;
-    }
-
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR

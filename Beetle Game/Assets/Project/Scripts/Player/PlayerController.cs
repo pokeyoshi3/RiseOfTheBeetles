@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void Movement_Basic()
     {
-        MoveCon.RigidbodySetGravityScale((flying) ? 0 : currentGravity);
+        MoveCon.RigidbodySetGravityScale((flying || digging) ? 0 : currentGravity);
 
         Move_Walk();
         Move_Jump();
@@ -232,25 +232,36 @@ public class PlayerController : MonoBehaviour
         {
             if (!MoveCon.IsApplyingForce())
             {
-                bool wallfront = checkRay(inputAxis, ClawDistance, "Dirt");
-                if (HasClaws && wallfront) { Action_Claws(); }
+                GameObject wallfront = checkRay(inputAxis, ClawDistance, "Dirt", LayerMask.GetMask("Ground"));
+                if (HasClaws && wallfront != null) { Action_Claws(wallfront, inputAxis); }
                 else if (HasHorns) { Action_Horns(); }
             }
             inputAction = false;
         }
     }
 
-    private bool checkRay(Vector2 dir, float distance, string tag)
+    private GameObject checkRay(Vector2 dir, float distance, string tag, LayerMask layer)
     {
         Vector2 dn = dir.normalized;
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, dn, distance, layer);
 
-        if (Physics2D.Raycast(transform.position, dn, distance).transform.tag.Equals(tag)) { return true; }
-        return false;
+        if(Physics2D.Raycast(transform.position, dn, distance, layer))
+        {
+            if (ray.transform.tag.Equals(tag)) { return ray.transform.gameObject; }
+        }
+        
+        return null;
     }
 
-    private bool checkCircle(float radius, string tag)
+    private bool checkCircle(float radius, string tag, LayerMask layer)
     {
-        if (Physics2D.OverlapCircle(transform.position, radius).transform.tag.Equals(tag)) { return true; }
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radius, layer);
+
+        foreach(Collider2D col in cols)
+        {
+            if (col.transform.tag.Equals(tag)) { return true; }
+        }
+
         return false;
     }
 
@@ -274,20 +285,44 @@ public class PlayerController : MonoBehaviour
         float hornDelay = 0.1f;
         float hornCool = 0.1f;
 
-        MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, hornDelay, true));
+        MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, hornDelay, true, false));
         SendMessageOverRayCastCircle(0.10f, inputAxis * HornDistance, HornRadius, "ApplyDamage", HornDamage);
-        MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, hornCool, false));
+        MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, hornCool, false, false));
     }
 
-    public void Action_Claws()
+    public void Action_Claws(GameObject dirt, Vector2 dir)
     {
+        Debug.Log("Wall detected and called");
         //MoveCon.AddPlayerForceToQueue(new PlayerForce(inputAxis * 10, ForceMode2D.Impulse, 0.30f, true));
         //SendMessageOverRayCast(0.35f, Vector2.down, ClawDistance, "ApplyDamage", ClawDamage);
+
+        if(!digging)
+        { 
+            StartCoroutine(Dig(dirt, dir));
+        }
     }
 
-    public void Digging()
+    IEnumerator Dig(GameObject dirt, Vector2 dir)
     {
+        Vector2 force = dir * 3;
+        float time = 0.2f;
 
+        digging = true;
+        dirt.GetComponent<DirtDiggable>().SetColliderTrigger(true);
+
+        while(digging)
+        {
+            MoveCon.AddPlayerForceToQueue(new PlayerForce(force, ForceMode2D.Impulse, time, false, false));
+            yield return new WaitForSeconds(time);
+            digging = checkCircle(0.5f, "Dirt", LayerMask.GetMask("Ground"));
+
+            if(MoveCon.RigidbodyGetVelocity() == Vector2.zero)
+            {
+                force = -force;
+            }
+        }
+
+        dirt.GetComponent<DirtDiggable>().SetColliderTrigger(false);
     }
 
     public void SendMessageOverRayCast(float afterTime, Vector2 dir, float distance, string message, object value)
@@ -330,7 +365,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Player took damage: " + damage);
 
-        MoveCon.AddPlayerForceToQueue(new PlayerForce(-inputAxis * 4, ForceMode2D.Impulse, 0.2f, false));
+        MoveCon.AddPlayerForceToQueue(new PlayerForce(-inputAxis * 4, ForceMode2D.Impulse, 0.2f, false, false));
 
         /*if (particlesDamage != null) { Instantiate(particlesDamage, transform.position, Quaternion.identity); }
 

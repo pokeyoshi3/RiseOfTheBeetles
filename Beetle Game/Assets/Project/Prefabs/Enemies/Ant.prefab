@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 473809665170227388}
   - component: {fileID: 473809665170227391}
   - component: {fileID: 473809665170227390}
-  - component: {fileID: 473809665170227377}
+  - component: {fileID: 1317407989}
   m_Layer: 13
   m_Name: Ant
   m_TagString: Enemy
@@ -175,13 +175,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473809665170227376}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.12, y: -2.8056128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473809664489360298}
   - {fileID: 473809664763223877}
   - {fileID: 760420829166096353}
+  - {fileID: 5673294386364680402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -333,7 +334,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &473809665170227377
+--- !u!114 &1317407989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,20 +343,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 473809665170227376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ea532aceb539446a9e8c39a365bd20, type: 3}
+  m_Script: {fileID: 11500000, guid: 49ecdbde273285949a94d58591ea10da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
   damageOnAttack: 2
-  distanceTrigger: 0
+  distanceTrigger: 5
   gravity: 3
   audioTookDamage: {fileID: 0}
   particlesDamage: {fileID: 0}
   prefabDeath: {fileID: 0}
   health: 0
-  walkSpeed: 6
+  walkSpeed: 3
   boundaryLeft: 8.6
   boundaryRight: 3.2
+  spawnTime: 0.4
+  projectileSpawn: {fileID: 5673294386364680402}
+  projectile: {fileID: 8083125294908971268, guid: ed7141e5f3ad007418fce1c73d4e4c19,
+    type: 3}
 --- !u!1 &6236427392063849348
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,3 +418,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.55}
   m_EdgeRadius: 0
+--- !u!1 &8589720337499464222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5673294386364680402}
+  m_Layer: 0
+  m_Name: Projectile_Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5673294386364680402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589720337499464222}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 473809665170227386}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
