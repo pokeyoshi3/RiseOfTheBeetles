@@ -367,7 +367,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestTimer: {fileID: 545340474}
-  queenAnims: []
+  queenAnims:
+  - {fileID: 5294719161618600114}
+  - {fileID: 0}
   maxSegmentsPerGame: 5
   beatsPerMinute: 120
   distBetweenDots: 250

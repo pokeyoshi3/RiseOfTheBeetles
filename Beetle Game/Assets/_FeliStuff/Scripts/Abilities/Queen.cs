@@ -10,7 +10,7 @@ public class Queen : MonoBehaviour
 
     [Tooltip("Scriptable Objects containing possible segments for this queens minigame")]
     public BeatSegment[] BeatSegments;
-
+    
 
 
     [SerializeField]
