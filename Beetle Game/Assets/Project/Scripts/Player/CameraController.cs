@@ -11,36 +11,44 @@ public class CameraController : MonoBehaviour
     [Range(1, 10)]
     public float LookSpeed = 0;
 
-    private Vector3 offset;
+    public Vector3 offset;
     private Vector3 lookPosition;
 
     private void Start()
     {
-        offset = transform.localPosition;
+        //offset = transform.localPosition;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (GameManager.Instance.GameState == eGameState.running)
-        {
-            if (LookAt == null)
-                return;
+        if (LookAt == null)
+            return;
   
-            if(LookForwardByInput)
-            {
-                lookPosition = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), -1) * LookDistance;
-            }
-            else
-            {
-                lookPosition = Vector3.zero;
-            }
+        if(LookForwardByInput)
+        {
+            lookPosition = LookAt.position + new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), -1) * LookDistance;
+        }
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, offset + lookPosition, LookSpeed * Time.deltaTime);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, offset + lookPosition, LookSpeed * Time.fixedDeltaTime);
+    }
+
+    public void SetCameraLookAt(Transform look, bool jumpTowards)
+    {
+        LookAt = look;
+
+        if(jumpTowards)
+        {
+            SetCameraPosition(look.position);
         }
     }
 
-    //public void SetRecoil(Vector3 recoil)
-    //{
-    //    transform.position += recoil;
-    //}
+    public void SetCameraPosition(Vector3 pos)
+    {
+        transform.position = pos;
+    }
+
+    public void SetCameraRecoil(Vector3 recoil)
+    {
+        transform.position += recoil;
+    }
 }
