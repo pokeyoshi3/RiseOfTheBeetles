@@ -22,13 +22,11 @@ public class IEnemy : MonoBehaviour
     [SerializeField]
     protected int health;
 
-    protected Transform player;
 
     protected void Awake()
     {
         moveCon = GetComponent<MovementController>();
         audioSrc = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         health = maxHealth;
     }
 
@@ -56,7 +54,8 @@ public class IEnemy : MonoBehaviour
 
     protected bool playerIsInRange(float range)
     {
-        return (Mathf.Abs(Vector2.Distance(transform.position, player.position)) <= range);
+        PlayerController player = (GameManager_New.instance.GetPlayerInstance());
+        return (player != null) ? (Mathf.Abs(Vector2.Distance(transform.position, player.transform.position)) <= range) : false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

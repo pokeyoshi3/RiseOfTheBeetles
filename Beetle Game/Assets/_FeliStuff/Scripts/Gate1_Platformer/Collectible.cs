@@ -6,14 +6,16 @@ public class Collectible : MonoBehaviour
 {
     [SerializeField]
     private int value = 1;
-    public static event System.Action<int, bool> OnRessourceCollect = delegate { };
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         print(other.gameObject.name + " has touched " + this.gameObject.name);
-        if (other.GetComponent<PlayerController>())
+        PlayerController player = other.GetComponent<PlayerController>();
+
+        if (player != null)
         {
-            OnRessourceCollect(value, true);
-            Destroy(this.gameObject, 0.15f);
+            player.AddResourcesToPlayer(value);
+            Destroy(this.gameObject);
         }
     }
 }

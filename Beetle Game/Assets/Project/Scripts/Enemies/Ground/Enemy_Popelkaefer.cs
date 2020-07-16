@@ -26,6 +26,9 @@ public class Enemy_Popelkaefer : IEnemy
     // Update is called once per frame
     protected override void Update()
     {
+        if (GameManager_New.instance.GetGameState() != eGameState.running)
+            return;
+
         if ((transform.position.x > startX + boundaryRight && !turned || transform.position.x < startX - boundaryLeft && turned))
         {
             turned = !turned;

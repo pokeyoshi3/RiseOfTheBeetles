@@ -7,7 +7,7 @@ public class QueenContact : MonoBehaviour
 {
     private Queen queen;
     private AbilityManager AM;
-    private GameManager GM;
+    private GameManager_New GM;
     private void Awake()
     {
         queen = GetComponent<Queen>();
@@ -16,7 +16,7 @@ public class QueenContact : MonoBehaviour
     private void Start()
     {
         AM = AbilityManager.Instance;
-        GM = GameManager.Instance;
+        GM = GameManager_New.instance;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

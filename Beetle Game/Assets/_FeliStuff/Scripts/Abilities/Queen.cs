@@ -48,7 +48,7 @@ public class Queen : MonoBehaviour
 
     private void Update()
     {
-        if(selected && GameManager.Instance.GameState != eGameState.minigame)
+        if(selected && GameManager_New.instance.GetGameState() != eGameState.minigame)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -90,7 +90,7 @@ public class Queen : MonoBehaviour
 
     public IEnumerator StartMinigame()
     {
-        GameManager.Instance.ChangeGameState(eGameState.minigame);
+        GameManager_New.instance.SetGameState(eGameState.minigame);
         //while(BlackScreen.alpha < 1.0f)
         //{
         //    BlackScreen.alpha += 0.1f;

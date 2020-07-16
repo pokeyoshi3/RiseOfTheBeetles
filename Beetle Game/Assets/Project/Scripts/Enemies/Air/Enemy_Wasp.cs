@@ -32,7 +32,9 @@ public class Enemy_Wasp : IEnemy
 
     // Update is called once per frame
     protected override void Update()
-    {        
+    {
+        if (GameManager_New.instance.GetGameState() != eGameState.running)
+            return;
         Turn();
         Walk();
 

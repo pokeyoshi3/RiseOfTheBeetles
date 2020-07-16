@@ -10,7 +10,12 @@ public class NameGenerator : MonoBehaviour
     private List<string> FirstNames;
     private List<string> LastNames;
 
-    private void Start()
+    private void Awake()
+    {
+        GatherNames();
+    }
+
+    public void GatherNames()
     {
         FirstNames = NamesInFile(FirstNameList);
         LastNames = NamesInFile(LastNameList);
@@ -32,6 +37,8 @@ public class NameGenerator : MonoBehaviour
 
     public string NewBugName()
     {
+        GatherNames();
+
         string firstName = FirstNames[Random.Range(0, FirstNames.Count)];
         string lastName = LastNames[Random.Range(0, LastNames.Count)];
         return firstName + " " + lastName;

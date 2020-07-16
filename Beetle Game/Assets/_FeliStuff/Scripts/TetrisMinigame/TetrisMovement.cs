@@ -99,7 +99,7 @@ public class TetrisMovement : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (board.State == eMinigameState.running && GameManager.Instance.GameState == eGameState.minigame)
+        if (board.State == eMinigameState.running && GameManager_New.instance.GetGameState() == eGameState.minigame)
         {
             if (Input.GetButton("Down"))
             {
@@ -237,7 +237,7 @@ public class TetrisMovement : MonoBehaviour
 
     public virtual IEnumerator AutomaticDropping()
     {
-        while (board.State == eMinigameState.running && GameManager.Instance.GameState == eGameState.minigame)
+        while (board.State == eMinigameState.running && GameManager_New.instance.GetGameState() == eGameState.minigame)
         {
             if (fastDrop && dropTimer > fastdropTime)
             {

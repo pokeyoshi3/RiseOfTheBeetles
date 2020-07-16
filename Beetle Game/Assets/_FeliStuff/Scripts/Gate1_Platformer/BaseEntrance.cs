@@ -6,9 +6,11 @@ public class BaseEntrance : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>())
+        PlayerController player = other.GetComponent<PlayerController>();
+
+        if (player != null)
         {
-            GameManager.Instance.UpdateBaseResources();
+            player.DepleteResourcesToBase();
         }
     }
 }

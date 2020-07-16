@@ -36,8 +36,13 @@ public class Enemy_Ant : IEnemy
     // Update is called once per frame
     protected override void Update()
     {
-        if(playerIsInRange(distanceTrigger))
+        if (GameManager_New.instance.GetGameState() != eGameState.running)
+            return;
+
+        if (playerIsInRange(distanceTrigger))
         {
+            PlayerController player = GameManager_New.instance.GetPlayerInstance();
+
             if (player.transform.position.x > transform.position.x)
                 turned = false;
             else if (player.transform.position.x > transform.position.x)

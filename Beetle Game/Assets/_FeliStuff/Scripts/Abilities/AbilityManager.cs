@@ -134,7 +134,7 @@ public class AbilityManager : Singleton<AbilityManager>
         //    BlackScreen.alpha -= 0.1f;
         //    yield return new WaitForSeconds(0.1f);
         //}
-        GameManager.Instance.ChangeGameState(eGameState.running);
+        GameManager_New.instance.SetGameState(eGameState.running);
     }
 
     public void SetPassiveAbility(Color newCol)

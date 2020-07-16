@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("Object References")]
     public MovementController MoveCon;
     public AnimationController AnimCon;
+    public NameGenerator nameGenerator;
 
     [Header("Player Setup")]
     public int MaxHealth;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public int HornDamage;
     public float HornDistance;
     public float HornRadius;
+    public GameObject HornParticle;
 
     [Header("Claws")]
     public bool HasClaws;
@@ -57,6 +59,8 @@ public class PlayerController : MonoBehaviour
     //
     [SerializeField]
     private int health;
+    private int resourcesOnPlayer;
+    private string bugName;
 
     //input
     private Vector2 inputAxis;  //movement axis constant input check
@@ -99,14 +103,21 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = MaxHealth;
+        //Coyote Setup
         MoveCon.Ground.SetCoyoteTime(CoyoteJumpTime);
+
+        //Stats setup
+        health = MaxHealth;
+        bugName = nameGenerator.NewBugName();
+        resourcesOnPlayer = 0;
+
+        UpdateUIToGameManager();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.GameState == eGameState.running)
+        if (GameManager_New.instance.GetGameState() == eGameState.running)
         {
             InputDetection();
             Abilities();
@@ -116,7 +127,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.GameState == eGameState.running)
+        if (GameManager_New.instance.GetGameState() == eGameState.running)
         {
             Movement_Basic();
         }
@@ -150,6 +161,7 @@ public class PlayerController : MonoBehaviour
     private void Move_Walk()
     {
         MoveCon.Walk(inputAxis.x * currentMoveSpeed, AccelerationFluidity);
+        AnimCon.animController.SetBool("Swimming", underWater);
     }
 
     private void Move_Jump()
@@ -159,6 +171,11 @@ public class PlayerController : MonoBehaviour
         //Reset Jumping when standing on the ground
         if (wasGrounded != MoveCon.Ground.grounded)
         {
+            if (!jumped && !MoveCon.Ground.grounded)
+            {
+                AnimCon.animController.Play("Fall", 0, 0);
+            }
+
             groundedOn = (MoveCon.Ground.grounded ? MoveCon.Ground.groundedObjects[0].gameObject : null);
             if (MoveCon.Ground.grounded && !groundedOn.CompareTag("EnemyHead")) { jumped = false; jumpStopped = false; }
         }
@@ -175,13 +192,15 @@ public class PlayerController : MonoBehaviour
                 {
                     jumped = true;
                     MoveCon.Jump(currentJumpHeight);
+
+                    AnimCon.animController.Play("Jump", 0, 0);
                 }
             }
             else if (HasWings && jumped && !underWater)
             {
                 flying = HasWings;     //set flying to be true, if flying is allowed
             }
-            else if (HasFins && underWater && MoveCon.RigidbodyGetVelocity().y <= 0)
+            else if (HasFins && underWater && MoveCon.RigidbodyGetVelocity().y <= 0) //underwater jumping
             {
                 jumped = true;
                 jumpStopped = false;
@@ -224,6 +243,7 @@ public class PlayerController : MonoBehaviour
 
         //Set fly time to be 0 if grounded or under water
         flyTime = (MoveCon.Ground.grounded || underWater) ? 0 : flyTime;
+        AnimCon.animController.SetBool("Flying", flying);
     }
 
     private void Abilities()
@@ -275,6 +295,7 @@ public class PlayerController : MonoBehaviour
             {
                 stoodOn.SendMessageUpwards("StompDamage", JumpDamage, SendMessageOptions.DontRequireReceiver);
                 MoveCon.Jump(JumpHeight);
+                AnimCon.animController.Play("Jump", 0, 0);
                 jumped = true;
             }
         }
@@ -284,6 +305,8 @@ public class PlayerController : MonoBehaviour
     {
         float hornDelay = 0.1f;
         float hornCool = 0.1f;
+
+        Instantiate(HornParticle, transform.position, Quaternion.Euler(0, 0, Mathf.Atan2(inputAxis.y, inputAxis.x) * Mathf.Rad2Deg));
 
         MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, hornDelay, true, false));
         SendMessageOverRayCastCircle(0.10f, inputAxis * HornDistance, HornRadius, "ApplyDamage", HornDamage);
@@ -363,8 +386,6 @@ public class PlayerController : MonoBehaviour
     {
         health -= damage;
 
-        Debug.Log("Player took damage: " + damage);
-
         MoveCon.AddPlayerForceToQueue(new PlayerForce(-inputAxis * 4, ForceMode2D.Impulse, 0.2f, false, false));
 
         /*if (particlesDamage != null) { Instantiate(particlesDamage, transform.position, Quaternion.identity); }
@@ -372,11 +393,9 @@ public class PlayerController : MonoBehaviour
         if (audioTookDamage != null) { audioSrc.PlayOneShot(audioTookDamage); }
         */
 
-        if (health <= 0)
-        {
-            //if (prefabDeath != null) { Instantiate(prefabDeath, transform.position, Quaternion.identity); }
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        UpdateUIToGameManager();
+
+        if (health <= 0) { Destroy(this.gameObject); }
     }
 
     public void SetAbilities(bool horns, bool claws, bool wings, bool fins)
@@ -386,6 +405,22 @@ public class PlayerController : MonoBehaviour
         HasWings = wings;
         HasFins = fins;
     }
-
     public void SetUnderWater(bool water) { underWater = water; } //function used on triggers to specify if object is under water
+    public void AddResourcesToPlayer(int amount) 
+    {
+        resourcesOnPlayer += amount; 
+        UpdateUIToGameManager();
+    }
+    public void UpdateUIToGameManager()
+    {
+        GameManager_New.instance.UI_Update_Player(bugName, health, resourcesOnPlayer);
+    }
+
+    public void DepleteResourcesToBase()
+    {
+        GameManager_New.instance.AddResourcesToBase(resourcesOnPlayer);
+        resourcesOnPlayer = 0;
+
+        UpdateUIToGameManager();
+    }
 }

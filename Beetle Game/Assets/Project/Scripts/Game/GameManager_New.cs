@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager_New : MonoBehaviour
 {
     public static GameManager_New instance;
-    private eGameState gameState = eGameState.paused;
+    private eGameState gameState = eGameState.running;
 
     [Header("Setup")]
     public CameraController mainCamera;
@@ -13,9 +13,12 @@ public class GameManager_New : MonoBehaviour
     public Transform playerSpawn;
     public GameObject playerPrefab;
 
-    public PlayerController playerInstance { get { return playerObject.GetComponent<PlayerController>(); } }
+    public PlayerController playerInstance { get { return playerObject != null ? playerObject.GetComponent<PlayerController>() : null; } }
     private GameObject playerObject;
+
+
     private int ResourcesInBase;
+    private int BugsInBase;
 
     void Awake()
     {
@@ -39,6 +42,11 @@ public class GameManager_New : MonoBehaviour
     private void Update()
     {
         GameStateUpdate();
+
+        if(playerObject == null)
+        {
+            SpawnPlayer();
+        }
     }
 
     void GameStateUpdate()
@@ -58,6 +66,8 @@ public class GameManager_New : MonoBehaviour
         }
     }
 
+    int healthtest = 6;
+
     public void SpawnPlayer()
     {
         //Spawn a player instance
@@ -68,8 +78,37 @@ public class GameManager_New : MonoBehaviour
         }
     }
 
+    public void UI_Update()
+    {
+        ui.Base_SetResources(ResourcesInBase);
+        ui.Base_SetBug(BugsInBase);
+    }
+
+    public void UI_Update_Player(string name, int health, int resources)
+    {
+        ui.Player_SetName(name);
+        ui.Player_SetResources(resources);
+        ui.Player_SetHealth(health);
+    }
+
     public void SetGameState(eGameState state)
     {
         gameState = state;
+    }
+
+    public eGameState GetGameState()
+    {
+        return gameState;
+    }
+
+    public void AddResourcesToBase(int amount)
+    {
+        ResourcesInBase += amount;
+        UI_Update();
+    }
+
+    public PlayerController GetPlayerInstance()
+    {
+        return (playerInstance != null) ? playerInstance : null;
     }
 }

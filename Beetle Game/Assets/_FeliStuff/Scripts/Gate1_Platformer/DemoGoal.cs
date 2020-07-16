@@ -17,7 +17,7 @@ public class DemoGoal : MonoBehaviour
 
     private IEnumerator DemoEnd()
     {
-        GameManager.Instance.ChangeGameState(eGameState.paused);
+        GameManager_New.instance.SetGameState(eGameState.paused);
 
         while (BlackScreen.alpha < 1.0f)
         {

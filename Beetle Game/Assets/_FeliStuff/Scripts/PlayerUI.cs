@@ -22,44 +22,58 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Text resInBase;
     [SerializeField]
-    private Text playerName;
+    private Text bugInBase;
     [SerializeField]
-    private NameGenerator nameGen;
+    private Text playerName;
+
+    private int UIhealth = 6;
 
     private void Start()
     {
-        nameGen = GetComponent<NameGenerator>();
     }
 
-    //HACK for testing purposes
-    int testMaxHP = 6;    
-    public void TestHP(bool lose)
+    ////HACK for testing purposes
+    //int testMaxHP = 6;    
+    //public void TestHP(bool lose)
+    //{
+    //    if (lose)
+    //    {
+    //        if (testMaxHP == 0)
+    //            print("no HP left");
+    //        else
+    //        {
+    //            ChangeHP(testMaxHP, testMaxHP - 1);
+    //            testMaxHP -= 1;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (testMaxHP == 6)
+    //            print("full hp reached");
+    //        else
+    //        {
+    //            ChangeHP(testMaxHP, testMaxHP + 1);
+    //            testMaxHP += 1;
+    //        }
+    //    }
+    //}
+
+    public void Player_SetName(string n)
     {
-        if (lose)
-        {
-            if (testMaxHP == 0)
-                print("no HP left");
-            else
-            {
-                ChangeHP(testMaxHP, testMaxHP - 1);
-                testMaxHP -= 1;
-            }
-        }
-        else
-        {
-            if (testMaxHP == 6)
-                print("full hp reached");
-            else
-            {
-                ChangeHP(testMaxHP, testMaxHP + 1);
-                testMaxHP += 1;
-            }
-        }
+        playerName.text = n;
     }
 
-    public void TestNameGen()
+    public void Player_SetResources(int resources)
     {
-        playerName.text = nameGen.NewBugName();
+        resOnPlayer.text = resources.ToString();
+    }
+
+    public void Player_SetHealth(int health)
+    {
+        ChangeHP(UIhealth, health);
+
+        UIhealth = health;
+        if (UIhealth <= 0) { UIhealth = 0; }
     }
 
     /// <summary>
@@ -71,29 +85,43 @@ public class PlayerUI : MonoBehaviour
         //lost health
         if (prevHP > newHP)
         {
-            if (prevHP-newHP == 1)
-                petalsForHP[newHP].Fall();
+            int lost = prevHP - newHP;
+
+            for (int i = 0; i < lost; i++)
+            {
+                if (newHP > 0)
+                {
+                    petalsForHP[newHP + i].Fall();
+                }
+            }
+
+            //if (prevHP-newHP == 1)
+            //    petalsForHP[newHP].Fall();
         }
         //regained health
         else if (prevHP < newHP)
         {
             int gained = newHP - prevHP;
+
             for(int i = 0; i < gained; i++)
             {
-                petalsForHP[prevHP+i].Regain();
+                if (prevHP + i < 6)
+                {
+                    petalsForHP[prevHP + i].Regain();
+                }
             }
         }
         //else: no hp change -> no ui change
     }
 
-    private void ChangePlayerRessources(int newResCount)
-    {
-        resOnPlayer.text = newResCount.ToString();
-    }
-
-    private void ChangeBaseRessources(int newResCount)
+    public void Base_SetResources(int newResCount)
     {
         resInBase.text = newResCount.ToString();
+    }
+
+    public void Base_SetBug(int newBugCount)
+    {
+        bugInBase.text = newBugCount.ToString();
     }
 
     /// <summary>
