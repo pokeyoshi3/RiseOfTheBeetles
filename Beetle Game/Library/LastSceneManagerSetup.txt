@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/_FeliStuff/Scenes/DanceMinigame.unity
+- path: Assets/Soeren/ShowOff.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
