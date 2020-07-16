@@ -1,40 +1,7 @@
 fileFormatVersion: 2
 guid: 67c88140bbffe3b4c96f5b086ebc946c
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 1872847420532029988
-    second: Tiles_Ground_Dirt_0
-  - first:
-      213: -8850075946585092436
-    second: Tiles_Ground_Dirt_1
-  - first:
-      213: 526554549578107233
-    second: Tiles_Ground_Dirt_2
-  - first:
-      213: 471959953858861831
-    second: Tiles_Ground_Dirt_3
-  - first:
-      213: -4435374250550450652
-    second: Tiles_Ground_Dirt_4
-  - first:
-      213: 2731622418281038004
-    second: Tiles_Ground_Dirt_5
-  - first:
-      213: 2232566618440426904
-    second: Tiles_Ground_Dirt_6
-  - first:
-      213: 5305419475208647349
-    second: Tiles_Ground_Dirt_7
-  - first:
-      213: -2999671601109868052
-    second: Tiles_Ground_Dirt_8
-  - first:
-      213: 8802054581429936779
-    second: Tiles_Ground_Dirt_0
-  - first:
-      213: -2813621304881367315
-    second: Tiles_Ground_Dirt_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -73,11 +40,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.3}
   spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -97,7 +64,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,31 +76,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -142,28 +85,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Tiles_Ground_Dirt_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1281
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b822bbba10e272a70800000000000000
-      internalID: 8802054581429936779
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

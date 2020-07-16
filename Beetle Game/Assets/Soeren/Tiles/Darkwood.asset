@@ -36,5 +36,5 @@ MonoBehaviour:
   m_ColliderType: 1
   m_Sprites:
   - {fileID: -9100237012827844787, guid: 8ade691a579892841958fea19dd695c0, type: 3}
-  - {fileID: 0}
+  - {fileID: 7178750243583747595, guid: 8ade691a579892841958fea19dd695c0, type: 3}
   - {fileID: 5937418801196732415, guid: 8ade691a579892841958fea19dd695c0, type: 3}

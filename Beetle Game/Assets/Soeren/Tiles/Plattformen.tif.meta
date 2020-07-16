@@ -29,39 +29,6 @@ TextureImporter:
   - first:
       213: -3230322664568801942
     second: Plattformen_8
-  - first:
-      213: -4457429333489771248
-    second: Plattformen_0
-  - first:
-      213: 4237043787309932308
-    second: Plattformen_1
-  - first:
-      213: 1378189569779113683
-    second: Plattformen_2
-  - first:
-      213: -7728252803198892265
-    second: Plattformen_3
-  - first:
-      213: 8102353749408317611
-    second: Plattformen_4
-  - first:
-      213: 4256870642515610295
-    second: Plattformen_5
-  - first:
-      213: -8741272067293111485
-    second: Plattformen_6
-  - first:
-      213: -4061430701208446117
-    second: Plattformen_7
-  - first:
-      213: 5334215900880731304
-    second: Plattformen_9
-  - first:
-      213: 8441096524069373265
-    second: Plattformen_10
-  - first:
-      213: -1281536925770602048
-    second: Plattformen_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,7 +91,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -136,31 +103,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -185,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01d9fed33a70422c0800000000000000
-      internalID: -4457429333489771248
+      spriteID: 2a104e8dde72cf240800000000000000
+      internalID: 4826776803133882786
       vertices: []
       indices: 
       edges: []
@@ -206,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41f526030e00dca30800000000000000
-      internalID: 4237043787309932308
+      spriteID: 04a3e0c5750e403e0800000000000000
+      internalID: -2088297661381854656
       vertices: []
       indices: 
       edges: []
@@ -227,8 +170,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3de15db9c10502310800000000000000
-      internalID: 1378189569779113683
+      spriteID: 195eebce57c69f460800000000000000
+      internalID: 7275965926732653969
       vertices: []
       indices: 
       edges: []
@@ -248,8 +191,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 717c9e2850bbfb490800000000000000
-      internalID: -7728252803198892265
+      spriteID: cf678397d3d87d490800000000000000
+      internalID: -7721547740937160964
       vertices: []
       indices: 
       edges: []
@@ -258,9 +201,30 @@ TextureImporter:
       name: Plattformen_4
       rect:
         serializedVersion: 2
-        x: 1792
-        y: 1260
-        width: 256
+        x: 1536
+        y: 1664
+        width: 512
+        height: 128
+      alignment: 9
+      pivot: {x: 0.25, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb7ba54d7071cb6b0800000000000000
+      internalID: -5279319340790138948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Plattformen_5
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1280
+        width: 768
         height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -269,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba089069ec7517070800000000000000
-      internalID: 8102353749408317611
+      spriteID: f3a4d6c5b9bf586a0800000000000000
+      internalID: -6447470646821828033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plattformen_5
+      name: Plattformen_6
       rect:
         serializedVersion: 2
         x: 1792
@@ -290,14 +254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ba8ee5ab41731b30800000000000000
-      internalID: 4256870642515610295
+      spriteID: db5ff18e94bb65bd0800000000000000
+      internalID: -2641718205304801859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Plattformen_6
+      name: Plattformen_7
       rect:
         serializedVersion: 2
         x: 0
@@ -311,50 +275,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34b13f73e53c0b680800000000000000
-      internalID: -8741272067293111485
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plattformen_7
-      rect:
-        serializedVersion: 2
-        x: 1536
-        y: 1664
-        width: 512
-        height: 126
-      alignment: 9
-      pivot: {x: 0.25, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
       spriteID: 8cb36b8d913a2a640800000000000000
       internalID: 5089809860287413192
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Plattformen_8
-      rect:
-        serializedVersion: 2
-        x: 1013
-        y: 1224
-        width: 778
-        height: 325
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 102, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a65bb7cc6a69b23d0800000000000000
-      internalID: -3230322664568801942
       vertices: []
       indices: 
       edges: []
