@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Horns")]
     public bool HasHorns;
+    public GameObject HornMesh;
     public int HornDamage;
     public float HornDistance;
     public float HornRadius;
@@ -35,16 +36,19 @@ public class PlayerController : MonoBehaviour
 
     [Header("Claws")]
     public bool HasClaws;
+    public GameObject ClawsMesh;
     public float ClawDistance;
     public float ClawDamage;
 
     [Header("Wings")]
     public bool HasWings;
+    public GameObject WingsMesh;
     public float WingsMaxFlyTime = 3f;
     public float WingsBonusJumpHeight = 1f;
 
     [Header("Fins")]
     public bool HasFins;
+    public GameObject FinsMesh;
     public float FinsGravityMultiplier;
     public float FinsSpeedMultiplier;
 
@@ -106,6 +110,9 @@ public class PlayerController : MonoBehaviour
         //Coyote Setup
         MoveCon.Ground.SetCoyoteTime(CoyoteJumpTime);
 
+        //AbilitySetup
+        SetAbilities();
+        
         //Stats setup
         health = MaxHealth;
         bugName = nameGenerator.NewBugName();
@@ -398,12 +405,14 @@ public class PlayerController : MonoBehaviour
         if (health <= 0) { Destroy(this.gameObject); }
     }
 
-    public void SetAbilities(bool horns, bool claws, bool wings, bool fins)
+    public void SetAbilities()
     {
-        HasHorns = horns;
-        HasClaws = claws;
-        HasWings = wings;
-        HasFins = fins;
+        HasHorns = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.horn);
+        HasClaws = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.claw);
+        HasWings = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.wings);
+        HasFins = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.water);
+
+        UpdatePlayerLook();
     }
     public void SetUnderWater(bool water) { underWater = water; } //function used on triggers to specify if object is under water
     public void AddResourcesToPlayer(int amount) 
@@ -422,5 +431,13 @@ public class PlayerController : MonoBehaviour
         resourcesOnPlayer = 0;
 
         UpdateUIToGameManager();
+    }
+
+    public void UpdatePlayerLook()
+    {
+        HornMesh.SetActive(HasHorns);
+        WingsMesh.SetActive(HasWings);
+        ClawsMesh.SetActive(HasClaws);
+        FinsMesh.SetActive(HasFins);
     }
 }

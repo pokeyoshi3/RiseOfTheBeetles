@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_FeliStuff/Scenes/Gate1Demo.unity
-    guid: ba7f2169bc9c19c4b8d9fad3a20a9a50
+    path: Assets/Project/Scenes/Demos/Gate_02_Showoff.unity
+    guid: 21c3f031fc87e974ba91578e76ba25a6
   m_configObjects: {}

@@ -38,6 +38,9 @@ public class BeatController : MonoBehaviour
     [SerializeField]
     private RectTransform dotSpawn;
 
+    public Sprite[] queenSprites;
+    public SpriteRenderer queenTest;
+
     private float timePerStep;
     private float movePerStep;
     private bool lerping = false;
@@ -61,6 +64,8 @@ public class BeatController : MonoBehaviour
     {
         if (state == eMinigameState.running)
         {
+            queenTest.sprite = queenSprites[curDot.ButtonImage() + 1];
+
             if (Input.GetButtonDown("up"))
             {
                 if (WasInputCorrect("up"))
@@ -110,6 +115,28 @@ public class BeatController : MonoBehaviour
                 curDot.SetDotState(BeatState.wrong);
             }        
         }
+        else
+        {
+            queenTest.sprite = queenSprites[0];
+        }
+
+        //hack for gate 2
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            state = eMinigameState.normalWin;
+            GameManager_New gm = GameManager_New.instance;
+
+            //gm.abilityManager.UnlockAbility(eAbility.claw);
+            //gm.abilityManager.ToggleAbilityActive(eAbility.claw, true);
+            gm.GetPlayerInstance().SetAbilities();
+
+            foreach(BeatDot bd in allDots)
+            {
+                Destroy(bd.gameObject);
+            }
+
+            gm.SetGameState(eGameState.running);
+        }
     }
 
     private bool WasInputCorrect(string lastInput)
@@ -136,7 +163,7 @@ public class BeatController : MonoBehaviour
 
     private void GetQueenInfo(BeatSegment[] possibleBeatSegments, int BPM, eAbility ability)
     {
-        curAnim = queenAnims[(int)ability];
+        //curAnim = queenAnims[(int)ability];
         beatsPerMinute = BPM;
         timePerStep = (60.0f / beatsPerMinute) / 50.0f;
         movePerStep = distBetweenDots / 50.0f;
@@ -202,11 +229,11 @@ public class BeatController : MonoBehaviour
                 yield return null;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                state = eMinigameState.paused;
-                yield return null;
-            }
+            //if (Input.GetKeyDown(KeyCode.Escape))
+            //{
+            //    state = eMinigameState.paused;
+            //    yield return null;
+            //}
 
             foreach(BeatDot dot in allDots)
             {

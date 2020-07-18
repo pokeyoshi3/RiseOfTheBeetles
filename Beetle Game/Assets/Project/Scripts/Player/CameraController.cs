@@ -24,10 +24,11 @@ public class CameraController : MonoBehaviour
         if (LookAt == null)
             return;
   
-        if(LookForwardByInput)
+        if(LookForwardByInput && GameManager_New.instance.GetGameState() == eGameState.running)
         {
             lookPosition = LookAt.position + new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), -1) * LookDistance;
         }
+        else { lookPosition = LookAt.position; }
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, offset + lookPosition, LookSpeed * Time.fixedDeltaTime);
     }

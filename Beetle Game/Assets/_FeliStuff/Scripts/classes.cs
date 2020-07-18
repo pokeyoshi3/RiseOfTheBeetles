@@ -19,7 +19,6 @@ public class Ability
     public void ToggleActive(bool active)
     {
         this.active = active;
-
     }
 }
 

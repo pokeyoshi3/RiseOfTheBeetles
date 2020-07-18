@@ -10,8 +10,6 @@ public class Queen : MonoBehaviour
 
     [Tooltip("Scriptable Objects containing possible segments for this queens minigame")]
     public BeatSegment[] BeatSegments;
-    
-
 
     [SerializeField]
     public Animator anim;
@@ -28,22 +26,22 @@ public class Queen : MonoBehaviour
     private AbilityManager AM;
     private bool selected;
     public eAbility Ability { get { return ability; } }
-    public bool Unlocked { get { return AM.IsAbilityUnlocked(Ability); } }
+    public bool Unlocked { get { return GameManager_New.instance.abilityManager.IsAbilityUnlocked(Ability); } }
     public int UnlockCost { get { return unlockCost; } }
 
     public static event System.Action<BeatSegment[], int, eAbility> OnMinigameStart = delegate { };
 
     private void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
+        //anim = GetComponentInChildren<Animator>();
     }
 
 
     private void Start()
     {
+        AM = GameManager_New.instance.abilityManager;
         matingInfo.SetActive(false);
         unlockInfo.SetActive(false);
-        AM = AbilityManager.Instance;
     }
 
     private void Update()
@@ -56,7 +54,7 @@ public class Queen : MonoBehaviour
 
                 if (Unlocked && !AM.IsAbilityActive(Ability))
                     StartCoroutine(StartMinigame());
-                else //if (!Unlocked && (GameManager.Instance.ResourcesInBase >= UnlockCost))
+                else if (!Unlocked && (GameManager_New.instance.GetResourcesInBase() >= UnlockCost))
                     Unlock();
             }
         }
@@ -107,9 +105,5 @@ public class Queen : MonoBehaviour
         //    BlackScreen.alpha -= 0.1f;
         //    yield return new WaitForSeconds(0.1f);
         //}
-
-        //UnityEngine.SceneManagement.SceneManager.LoadScene("Minigame", UnityEngine.SceneManagement.LoadSceneMode.Additive);
-        //yield return null;
-        //UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneByName("Minigame"));
     }
 }

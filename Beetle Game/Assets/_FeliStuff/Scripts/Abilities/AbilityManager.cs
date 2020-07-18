@@ -2,34 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityManager : Singleton<AbilityManager>
+public class AbilityManager : MonoBehaviour
 {
-    protected AbilityManager() {}
-
-    protected Ability[] abilities;
-    private PlayerController player;
+    private Ability[] abilities;
+    
     public int activeAbilities { get; protected set; }
-
-    //HACK temp for gate 1
-    //public CanvasGroup BlackScreen;
-    private SpriteRenderer playerSprite;
-    public Sprite GumbaPlayer;
-    public Sprite WingPlayer;
-    public Sprite WingHornPlayer;
-
-    //private Ability[] abilities = new Ability[4];
-    ////bool represents if the ability has been unlocked in the village
-    //private Dictionary<Ability, bool> allAbilities = new Dictionary<Ability, bool>();
-    ////List of abilities that are currently active 
-    //private HashSet<Ability> ActiveAbilities = new HashSet<Ability>();
-    //[SerializeField]
-    //GameObject[] wings;
-    //[SerializeField]
-    //GameObject[] horn;
-    //[SerializeField]
-    //GameObject[] claw;
-    //[SerializeField]
-    //GameObject[] water;
 
     private void Awake()
     {
@@ -40,19 +17,19 @@ public class AbilityManager : Singleton<AbilityManager>
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerController>();
-        playerSprite = player.GetComponentInChildren<SpriteRenderer>();
-        playerSprite.sprite = GumbaPlayer;
-        player.HasWings = player.HasHorns = player.HasFins = player.HasClaws = false;
+        //player = FindObjectOfType<PlayerController>();
+        //playerSprite = player.GetComponentInChildren<SpriteRenderer>();
+        //playerSprite.sprite = GumbaPlayer;
+        //player.HasWings = player.HasHorns = player.HasFins = player.HasClaws = false;
         //Board.OnGameEnd += ToggleAbilityActive;
     }
 
     public void WriteAbilityList()
     {
-        abilities[(int)eAbility.claw] = new Ability(eAbility.claw, false, false);
         abilities[(int)eAbility.wings] = new Ability(eAbility.wings, false, false);
         abilities[(int)eAbility.horn] = new Ability(eAbility.horn, false, false);
         abilities[(int)eAbility.water] = new Ability(eAbility.water, false, false);
+        abilities[(int)eAbility.claw] = new Ability(eAbility.claw, false, false);
     }
 
     public void SetAbilityCounter(int newCount)
@@ -89,58 +66,29 @@ public class AbilityManager : Singleton<AbilityManager>
         switch (ability)
         {
             case eAbility.wings:
-                player.HasWings = true;
+                GameManager_New.instance.GetPlayerInstance().HasWings = true;
                 break;
             case eAbility.horn:
-                player.HasHorns = true;
+                GameManager_New.instance.GetPlayerInstance().HasHorns = true;
                 break;
             case eAbility.water:
-                player.HasFins = true;
-
+                GameManager_New.instance.GetPlayerInstance().HasFins = true;
                 break;
             case eAbility.claw:
-                player.HasClaws = true;
-
+                GameManager_New.instance.GetPlayerInstance().HasClaws = true;
                 break;
             default:
                 break;
         }
 
-        StartCoroutine(SetSprite());
+        //PlayerFunc---> Update Look!
+        GameManager_New.instance.GetPlayerInstance().UpdatePlayerLook();
     }
 
-    //HACK temp shit for gate 1
-    private IEnumerator SetSprite()
-    {
-        switch (activeAbilities)
-        {
-            case 0:
-                playerSprite.sprite = GumbaPlayer;
-                break;
-            case 1:
-                playerSprite.sprite = WingPlayer;
-                break;
-            case 2:
-                playerSprite.sprite = WingHornPlayer;
-                break;
-            default:
-                break;
-        }
-
-        yield return new WaitForSeconds(0.25f);
-
-        //while (BlackScreen.alpha > 0.0f)
-        //{
-        //    BlackScreen.alpha -= 0.1f;
-        //    yield return new WaitForSeconds(0.1f);
-        //}
-        GameManager_New.instance.SetGameState(eGameState.running);
-    }
-
-    public void SetPassiveAbility(Color newCol)
-    {
-        playerSprite.color = newCol;
-    }
+    //public void SetPassiveAbility(Color newCol)
+    //{
+    //    playerSprite.color = newCol;
+    //}
 
 
     //private void ToggleAbilityLock(Ability ability, bool isUnlocked)

@@ -16,6 +16,7 @@ public class GameManager_New : MonoBehaviour
     public PlayerController playerInstance { get { return playerObject != null ? playerObject.GetComponent<PlayerController>() : null; } }
     private GameObject playerObject;
 
+    public AbilityManager abilityManager;
 
     private int ResourcesInBase;
     private int BugsInBase;
@@ -42,11 +43,7 @@ public class GameManager_New : MonoBehaviour
     private void Update()
     {
         GameStateUpdate();
-
-        if(playerObject == null)
-        {
-            SpawnPlayer();
-        }
+        Cheats();
     }
 
     void GameStateUpdate()
@@ -54,6 +51,10 @@ public class GameManager_New : MonoBehaviour
         switch (gameState)
         {
             case eGameState.running:
+                if (playerObject == null)
+                {
+                    SpawnPlayer();
+                }
                 break;
             case eGameState.paused:
                 break;
@@ -75,6 +76,30 @@ public class GameManager_New : MonoBehaviour
         {
             playerObject = Instantiate(playerPrefab, playerSpawn.transform.position, Quaternion.identity);
             mainCamera.SetCameraLookAt(playerObject.transform, true);
+        }
+    }
+
+    public void Cheats()
+    {
+        //GIF ME ALL THE PRINGELS
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            abilityManager.UnlockAbility(eAbility.claw);
+            abilityManager.ToggleAbilityActive(eAbility.claw, true);
+            abilityManager.UnlockAbility(eAbility.horn);
+            abilityManager.ToggleAbilityActive(eAbility.horn, true);
+            abilityManager.UnlockAbility(eAbility.water);
+            abilityManager.ToggleAbilityActive(eAbility.water, true);
+            abilityManager.UnlockAbility(eAbility.wings);
+            abilityManager.ToggleAbilityActive(eAbility.wings, true);
+
+            GetPlayerInstance().SetAbilities();
+        }
+
+        //
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            AddResourcesToBase(1);
         }
     }
 
@@ -105,6 +130,11 @@ public class GameManager_New : MonoBehaviour
     {
         ResourcesInBase += amount;
         UI_Update();
+    }
+
+    public int GetResourcesInBase()
+    {
+        return ResourcesInBase;
     }
 
     public PlayerController GetPlayerInstance()
