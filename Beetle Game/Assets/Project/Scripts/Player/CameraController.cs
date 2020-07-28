@@ -26,11 +26,11 @@ public class CameraController : MonoBehaviour
   
         if(LookForwardByInput && GameManager_New.instance.GetGameState() == eGameState.running)
         {
-            lookPosition = LookAt.position + new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), -1) * LookDistance;
+            lookPosition = LookAt.position + new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") / 2, 0) * LookDistance;
         }
         else { lookPosition = LookAt.position; }
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, offset + lookPosition, LookSpeed * Time.fixedDeltaTime);
+        transform.localPosition = Vector3.Slerp(transform.localPosition, offset + lookPosition, LookSpeed * Time.fixedDeltaTime);
     }
 
     public void SetCameraLookAt(Transform look, bool jumpTowards)

@@ -12,11 +12,13 @@ public class GameManager_New : MonoBehaviour
     public PlayerUI ui;
     public Transform playerSpawn;
     public GameObject playerPrefab;
+    public CanvasFader canvasFader;
 
     public PlayerController playerInstance { get { return playerObject != null ? playerObject.GetComponent<PlayerController>() : null; } }
     private GameObject playerObject;
 
     public AbilityManager abilityManager;
+    public MinigameManager minigameManager;
 
     private int ResourcesInBase;
     private int BugsInBase;

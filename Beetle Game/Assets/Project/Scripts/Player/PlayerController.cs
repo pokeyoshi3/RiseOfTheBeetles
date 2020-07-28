@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
             //Jump or fly
             if ((MoveCon.Ground.grounded || MoveCon.Ground.CanCoyote()) && !jumped && !underWater) //single-jump
             {
-                if (groundedOn != null && !groundedOn.CompareTag("EnemyHead"))
+                if (groundedOn != null && !groundedOn.CompareTag("EnemyHead") || MoveCon.Ground.CanCoyote())
                 {
                     jumped = true;
                     MoveCon.Jump(currentJumpHeight);
