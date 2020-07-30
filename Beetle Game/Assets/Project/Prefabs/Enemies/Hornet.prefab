@@ -47,6 +47,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -96,6 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveCon: {fileID: 506609456956600948}
   SpriteRend: {fileID: 506609456321846173}
+  model: {fileID: 0}
+  animController: {fileID: 0}
+  turnSpeed: 0.3
 --- !u!1 &506609456571671282
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +164,7 @@ GameObject:
   - component: {fileID: 506609456956600955}
   - component: {fileID: 506609456956600948}
   - component: {fileID: 506609456956600949}
-  - component: {fileID: 7631308133790870234}
+  - component: {fileID: -8230613606719741149}
   m_Layer: 13
   m_Name: Hornet
   m_TagString: Enemy
@@ -333,7 +337,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7631308133790870234
+--- !u!114 &-8230613606719741149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,7 +346,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 506609456956600951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1402434fc133a6241906c491b6fa859d, type: 3}
+  m_Script: {fileID: 11500000, guid: b0173034e73278340b13d403dc1b695b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
@@ -353,9 +357,10 @@ MonoBehaviour:
   particlesDamage: {fileID: 0}
   prefabDeath: {fileID: 0}
   health: 0
-  walkSpeed: 2
-  boundaryLeft: 6.1
-  boundaryRight: 6.7
+  dashSpeed: 5
+  dashTime: 0
+  boundaryLeft: 6
+  boundaryRight: 6
   spawnTime: 1
   projectileSpawn: {fileID: 6560905012079636359}
   projectile: {fileID: 3271585810575463185, guid: 93a6809e7d725b34e84ade03492ef021,
