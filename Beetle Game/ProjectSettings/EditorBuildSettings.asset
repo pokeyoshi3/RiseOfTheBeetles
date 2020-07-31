@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Scenes/Main_Game/Main_Level.unity
     guid: f7ba0916538f65f40820534b1c4679b2
+  - enabled: 1
+    path: Assets/Soeren/Soeren_Main.unity
+    guid: 84f712fab09356f42afd7c3a5df083df
   m_configObjects: {}
