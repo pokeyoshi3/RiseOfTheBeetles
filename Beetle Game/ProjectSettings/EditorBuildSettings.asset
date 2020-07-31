@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Project/Scenes/Demos/Gate_02_Showoff.unity
-    guid: 21c3f031fc87e974ba91578e76ba25a6
+    path: Assets/Project/Scenes/Main_Game/Main_Level.unity
+    guid: f7ba0916538f65f40820534b1c4679b2
   m_configObjects: {}

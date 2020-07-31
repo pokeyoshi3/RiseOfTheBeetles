@@ -10,7 +10,11 @@ public class DirtDiggable : MonoBehaviour
     {
         if(isDiggable)
         {
-            GetComponent<Collider2D>().isTrigger = dig;
+            Collider2D[] cols = GetComponents<Collider2D>();
+            foreach (Collider2D c in cols)
+            {
+                c.isTrigger = dig;
+            }
         }
     }
 }

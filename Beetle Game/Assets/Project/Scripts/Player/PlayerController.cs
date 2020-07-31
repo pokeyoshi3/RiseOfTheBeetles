@@ -226,6 +226,11 @@ public class PlayerController : MonoBehaviour
                 jumpStopped = true;
             }
 
+            if(flying)
+            {
+                flyTime = WingsMaxFlyTime;
+            }
+
             if (MoveCon.Ground.grounded)
             {
                 jumped = false;
@@ -334,21 +339,23 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dig(GameObject dirt, Vector2 dir)
     {
-        Vector2 force = dir * 3;
+        Vector2 force = dir * 7;
         float time = 0.2f;
+        bool failed = false;
 
         digging = true;
         dirt.GetComponent<DirtDiggable>().SetColliderTrigger(true);
 
         while(digging)
         {
-            MoveCon.AddPlayerForceToQueue(new PlayerForce(force, ForceMode2D.Impulse, time, false, false));
-            yield return new WaitForSeconds(time);
-            digging = checkCircle(0.5f, "Dirt", LayerMask.GetMask("Ground"));
+            MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, time, false, false));
+            MoveCon.AddPlayerForceToQueue(new PlayerForce(force * (failed ? -1 : 1), ForceMode2D.Impulse, time, false, false));
+            yield return new WaitForSeconds(time * 2);
+            digging = checkCircle(0.3f, "Dirt", LayerMask.GetMask("Ground"));
 
-            if(MoveCon.RigidbodyGetVelocity() == Vector2.zero)
+            if(Mathf.Abs(MoveCon.RigidbodyGetVelocity().magnitude) <= 0.1f)
             {
-                force = -force;
+                failed = true;
             }
         }
 

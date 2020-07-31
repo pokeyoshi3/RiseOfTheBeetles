@@ -18,6 +18,7 @@ public class GameManager_New : MonoBehaviour
     private GameObject playerObject;
 
     public AbilityManager abilityManager;
+
     public MinigameManager minigameManager;
 
     private int ResourcesInBase;
