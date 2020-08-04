@@ -21,8 +21,12 @@ public class GameManager_New : MonoBehaviour
 
     public MinigameManager minigameManager;
 
+    public DialogueController dialogueController;
+
     private int ResourcesInBase;
     private int BugsInBase;
+
+    private eGameState lastGameState;
 
     void Awake()
     {
@@ -121,12 +125,18 @@ public class GameManager_New : MonoBehaviour
 
     public void SetGameState(eGameState state)
     {
+        lastGameState = gameState;
         gameState = state;
     }
 
     public eGameState GetGameState()
     {
         return gameState;
+    }
+
+    public void RevertGameState()
+    {
+        gameState = lastGameState;
     }
 
     public void AddResourcesToBase(int amount)

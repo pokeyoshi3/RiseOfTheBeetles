@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Dirt
+  - FxTemporaire
+  - Enemy
+  - EnemyHead
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -18,7 +23,7 @@ TagManager:
   - Player
   - InFrontOfPlayer
   - Ground
-  - 
+  - Minigame
   - 
   - 
   - 

@@ -28,13 +28,14 @@ public class MovementController : MonoBehaviour
     private bool forceRunning = false;
     private bool canFlip = true;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
-    {
+    {        
+        if(GameManager_New.instance.GetGameState() != eGameState.running)
+        {
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
+            return; 
+        }
+
         Forces();
     }
 

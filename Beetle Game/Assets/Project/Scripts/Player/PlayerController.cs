@@ -348,7 +348,7 @@ public class PlayerController : MonoBehaviour
 
         while(digging)
         {
-            MoveCon.AddPlayerForceToQueue(new PlayerForce(Vector2.zero, ForceMode2D.Impulse, time, false, false));
+            MoveCon.AddPlayerForceToQueue(new PlayerForce(force * (failed ? -0.1f : 0.1f), ForceMode2D.Impulse, time, false, false));
             MoveCon.AddPlayerForceToQueue(new PlayerForce(force * (failed ? -1 : 1), ForceMode2D.Impulse, time, false, false));
             yield return new WaitForSeconds(time * 2);
             digging = checkCircle(0.3f, "Dirt", LayerMask.GetMask("Ground"));
