@@ -4,38 +4,44 @@ using UnityEngine;
 
 public class VerticalPlatform : MonoBehaviour
 {
-    private PlatformEffector2D effector;
+    private CompositeCollider2D col;
 
-    public float waitTime;
-    
+    //public float waitTime;
+    public bool insideTrigger = false;
+    public bool fallDown = false;
+    private bool didPressDown = false;
+
     void Start()
     {
-        effector = GetComponent<PlatformEffector2D>();
+        col = GetComponent<CompositeCollider2D>();
     }
     
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            waitTime = 0.2f;
-        }
-        
-        if (Input.GetKey(KeyCode.S))
-        {
-            if (waitTime <= 0)
-            {
-                effector.rotationalOffset = 180f;
-                waitTime = 0.2f;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        }
+        didPressDown = (Input.GetAxisRaw("Vertical") < 0 && !insideTrigger);
 
-        if (Input.GetKey(KeyCode.Space))
+        col.isTrigger = (insideTrigger && fallDown || didPressDown || Input.GetButton("Jump"));
+
+        if(didPressDown && !fallDown)
         {
-            effector.rotationalOffset = 0;
+            fallDown = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            insideTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            insideTrigger = false;
+            fallDown = false;
         }
     }
 }

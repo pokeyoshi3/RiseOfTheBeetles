@@ -10,7 +10,7 @@ public class BaseEntrance : MonoBehaviour
 
         if (player != null)
         {
-            player.DepleteResourcesToBase();
+            //player.DepleteResourcesToBase();
         }
     }
 }

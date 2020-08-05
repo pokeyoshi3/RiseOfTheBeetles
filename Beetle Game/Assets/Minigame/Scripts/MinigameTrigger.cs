@@ -39,10 +39,11 @@ public class MinigameTrigger : MonoBehaviour
                 {
                     GameManager_New.instance.minigameManager.StartMiniGame(abilityToUnlock, beats, distanceBetweenBeats);
                 }
-                else if (!unlocked && (GameManager_New.instance.GetResourcesInBase() >= unlockCost))
+                else if (!unlocked && (GameManager_New.instance.GetPlayerInstance().GetResourceAmount() >= unlockCost))
                 {
                     unlocked = true;
                     triggerText.text = gameText;
+                    GameManager_New.instance.GetPlayerInstance().AddResourcesToPlayer(-unlockCost);
                 }
             }
         }

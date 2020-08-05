@@ -20,16 +20,17 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Text resOnPlayer;
     [SerializeField]
-    private Text resInBase;
-    [SerializeField]
-    private Text bugInBase;
-    [SerializeField]
     private Text playerName;
+    [SerializeField]
+    private Sprite[] abilitySprites;
+    [SerializeField]
+    private Canvas mainCanv;
 
     private int UIhealth = 6;
 
-    private void Start()
+    private void Update()
     {
+        mainCanv.enabled = (GameManager_New.instance.GetGameState() == eGameState.running || GameManager_New.instance.GetGameState() == eGameState.cutscene);
     }
 
     ////HACK for testing purposes
@@ -76,6 +77,37 @@ public class PlayerUI : MonoBehaviour
         if (UIhealth <= 0) { UIhealth = 0; }
     }
 
+    public void SetAbilitySprites()
+    {
+        bool foundfirst = false;
+        bool foundsecond = false;
+        int first = 0;
+
+        //first one
+        for (int i = 0; i < 4; i++)
+        {
+            if (GameManager_New.instance.abilityManager.IsAbilityActive((eAbility)(i)))
+            {
+                first = i;
+                foundfirst = true;
+                abilityIconOne.sprite = abilitySprites[i];
+                break;
+            }
+        }
+        //second one
+        for (int i = 0; i < 4; i++)
+        {
+            if (GameManager_New.instance.abilityManager.IsAbilityActive((eAbility)(i)) && i != first)
+            {
+                foundsecond = true;
+                abilityIconTwo.sprite = abilitySprites[i];
+                break;
+            }
+        }
+
+        abilityIconOne.enabled = foundfirst;
+        abilityIconTwo.enabled = foundsecond;
+    }
     /// <summary>
     /// Changes HP UI according to health loss/gain
     /// Currently assumes that you lose only one petal per call
@@ -112,16 +144,6 @@ public class PlayerUI : MonoBehaviour
             }
         }
         //else: no hp change -> no ui change
-    }
-
-    public void Base_SetResources(int newResCount)
-    {
-        resInBase.text = newResCount.ToString();
-    }
-
-    public void Base_SetBug(int newBugCount)
-    {
-        bugInBase.text = newBugCount.ToString();
     }
 
     /// <summary>

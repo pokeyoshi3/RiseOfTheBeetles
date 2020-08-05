@@ -5,13 +5,14 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     private Ability[] abilities;
-    
-    public int activeAbilities { get; protected set; }
+
+    public bool hasEveryAbility = false;
+    public int abilityCounter = 0;
 
     private void Awake()
     {
         abilities = new Ability[4];
-        SetAbilityCounter(0);
+        //SetAbilityCounter(0);
         WriteAbilityList();
     }
 
@@ -32,9 +33,41 @@ public class AbilityManager : MonoBehaviour
         abilities[(int)eAbility.claw] = new Ability(eAbility.claw, false, false);
     }
 
-    public void SetAbilityCounter(int newCount)
+    public void ResetAbilitys() //Used by altersheim
     {
-        activeAbilities = newCount;
+        foreach (Ability a in abilities)
+        {
+            a.ToggleActive(false);
+        }
+
+        abilityCounter = 0;
+
+        SetPlayerAbilities();
+    }
+
+    public void UnlockEverything() //Crystals will use this function
+    {
+        hasEveryAbility = true;
+
+        abilityCounter = abilities.Length;
+
+        foreach(Ability a in abilities)
+        {
+            a.Unlock();
+            a.ToggleActive(true);
+        }
+
+        SetPlayerAbilities();
+    }
+
+    public void SetPlayerAbilities()
+    {
+        //PlayerFunc---> Update Look and Func!
+        GameManager_New.instance.GetPlayerInstance().SetAbilities();
+        GameManager_New.instance.GetPlayerInstance().UpdatePlayerLook();
+
+        //UI --> Update
+        GameManager_New.instance.ui.SetAbilitySprites();
     }
 
     public bool IsAbilityActive(eAbility ability)
@@ -60,29 +93,37 @@ public class AbilityManager : MonoBehaviour
 
     public void ToggleAbilityActive(eAbility ability, bool active)
     {
-        abilities[(int)ability].ToggleActive(active);
-        SetAbilityCounter(activeAbilities + 1);
-
-        switch (ability)
+        if(abilityCounter >= 2)
         {
-            case eAbility.wings:
-                GameManager_New.instance.GetPlayerInstance().HasWings = true;
-                break;
-            case eAbility.horn:
-                GameManager_New.instance.GetPlayerInstance().HasHorns = true;
-                break;
-            case eAbility.water:
-                GameManager_New.instance.GetPlayerInstance().HasFins = true;
-                break;
-            case eAbility.claw:
-                GameManager_New.instance.GetPlayerInstance().HasClaws = true;
-                break;
-            default:
-                break;
+            return;
         }
 
+        abilities[(int)ability].ToggleActive(active);
+        SetPlayerAbilities();
+        abilityCounter++;
+
+        //SetAbilityCounter(activeAbilities + 1);
+
+        //switch (ability)
+        //{
+        //    case eAbility.wings:
+        //        GameManager_New.instance.GetPlayerInstance().HasWings = true;
+        //        break;
+        //    case eAbility.horn:
+        //        GameManager_New.instance.GetPlayerInstance().HasHorns = true;
+        //        break;
+        //    case eAbility.water:
+        //        GameManager_New.instance.GetPlayerInstance().HasFins = true;
+        //        break;
+        //    case eAbility.claw:
+        //        GameManager_New.instance.GetPlayerInstance().HasClaws = true;
+        //        break;
+        //    default:
+        //        break;
+        //}
+
         //PlayerFunc---> Update Look!
-        GameManager_New.instance.GetPlayerInstance().UpdatePlayerLook();
+        //GameManager_New.instance.GetPlayerInstance().UpdatePlayerLook();
     }
 
     //public void SetPassiveAbility(Color newCol)

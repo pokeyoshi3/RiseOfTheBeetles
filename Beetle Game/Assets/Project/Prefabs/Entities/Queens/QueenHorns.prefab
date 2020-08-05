@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848761403843239241}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 186.2, y: -41.3, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.25}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 0.25}
   m_Children:
   - {fileID: 1848761405171351837}
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 1.39, y: -2.57}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.12, y: 7.85}
+  m_Size: {x: 1.87, y: 1.97}
   m_EdgeRadius: 0
 --- !u!114 &1848761403843239246
 MonoBehaviour:
@@ -126,7 +126,7 @@ MonoBehaviour:
   triggerInfo: {fileID: 1848761405260842845}
   triggerText: {fileID: 1848761405313742986}
   unlockCost: 0
-  abilityToUnlock: 1
+  abilityToUnlock: 0
   beats: 0000000001000000030000000200000000000000000000000100000000000000
   distanceBetweenBeats: 200
   unlockText: Mate with Queen Horns? 2 resources are needed.

@@ -21,12 +21,15 @@ public class GameManager_New : MonoBehaviour
 
     public MinigameManager minigameManager;
 
-    public DialogueController dialogueController;
+    public DialogueController dialogueController; //Actually supposed to be named dialogueManager but who cares it's one day before goldmaster and i'm tired
+
+    public FastTravelManager fastTravelManager;
 
     private int ResourcesInBase;
     private int BugsInBase;
 
     private eGameState lastGameState;
+    private int crystalCount;
 
     void Awake()
     {
@@ -91,29 +94,14 @@ public class GameManager_New : MonoBehaviour
         //GIF ME ALL THE PRINGELS
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            abilityManager.UnlockAbility(eAbility.claw);
-            abilityManager.ToggleAbilityActive(eAbility.claw, true);
-            abilityManager.UnlockAbility(eAbility.horn);
-            abilityManager.ToggleAbilityActive(eAbility.horn, true);
-            abilityManager.UnlockAbility(eAbility.water);
-            abilityManager.ToggleAbilityActive(eAbility.water, true);
-            abilityManager.UnlockAbility(eAbility.wings);
-            abilityManager.ToggleAbilityActive(eAbility.wings, true);
-
-            GetPlayerInstance().SetAbilities();
+            abilityManager.UnlockEverything();
         }
 
-        //
-        if(Input.GetKeyDown(KeyCode.F2))
+        //GIF ME MAHNEY
+        if (Input.GetKeyDown(KeyCode.F2))
         {
-            AddResourcesToBase(1);
+            GetPlayerInstance().AddResourcesToPlayer(100);
         }
-    }
-
-    public void UI_Update()
-    {
-        ui.Base_SetResources(ResourcesInBase);
-        ui.Base_SetBug(BugsInBase);
     }
 
     public void UI_Update_Player(string name, int health, int resources)
@@ -121,12 +109,16 @@ public class GameManager_New : MonoBehaviour
         ui.Player_SetName(name);
         ui.Player_SetResources(resources);
         ui.Player_SetHealth(health);
+        ui.SetAbilitySprites();
     }
 
     public void SetGameState(eGameState state)
     {
-        lastGameState = gameState;
-        gameState = state;
+        if(state != gameState)
+        {
+            lastGameState = gameState;
+            gameState = state;
+        }
     }
 
     public eGameState GetGameState()
@@ -139,19 +131,13 @@ public class GameManager_New : MonoBehaviour
         gameState = lastGameState;
     }
 
-    public void AddResourcesToBase(int amount)
-    {
-        ResourcesInBase += amount;
-        UI_Update();
-    }
-
-    public int GetResourcesInBase()
-    {
-        return ResourcesInBase;
-    }
-
     public PlayerController GetPlayerInstance()
     {
         return (playerInstance != null) ? playerInstance : null;
+    }
+
+    public void GetCrystal()
+    {
+        crystalCount++;
     }
 }

@@ -1,41 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-[RequireComponent(typeof(Queen))]
-public class QueenContact : MonoBehaviour
-{
-    //private MinigameTrigger queen;
+////[RequireComponent(typeof(Queen))]
+//public class QueenContact : MonoBehaviour
+//{
+//    //private MinigameTrigger queen;
 
-    //private AbilityManager AM;
-    //private GameManager_New GM;
+//    //private AbilityManager AM;
+//    //private GameManager_New GM;
 
-    //private void Awake()
-    //{
-    //    queen = GetComponent<MinigameTrigger>();
-    //}
+//    //private void Awake()
+//    //{
+//    //    queen = GetComponent<MinigameTrigger>();
+//    //}
 
-    //private void Start()
-    //{
-    //    //AM = AbilityManager.Instance;
-    //    //GM = GameManager_New.instance;
-    //}
+//    //private void Start()
+//    //{
+//    //    //AM = AbilityManager.Instance;
+//    //    //GM = GameManager_New.instance;
+//    //}
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    print(other.gameObject.name + " has touched " + this.gameObject.name);
+//    //private void OnTriggerEnter2D(Collider2D other)
+//    //{
+//    //    print(other.gameObject.name + " has touched " + this.gameObject.name);
 
-    //    if (other.GetComponent<PlayerController>())
-    //    {
-    //        queen.ShowInfo(true);
-    //    }
-    //}
+//    //    if (other.GetComponent<PlayerController>())
+//    //    {
+//    //        queen.ShowInfo(true);
+//    //    }
+//    //}
 
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (other.GetComponent<PlayerController>())
-    //    {
-    //        queen.ShowInfo(false);
-    //    }
-    //}    
-}
+//    //private void OnTriggerExit2D(Collider2D other)
+//    //{
+//    //    if (other.GetComponent<PlayerController>())
+//    //    {
+//    //        queen.ShowInfo(false);
+//    //    }
+//    //}    
+//}

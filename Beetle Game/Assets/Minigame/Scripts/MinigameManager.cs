@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class MinigameManager : MonoBehaviour
 {
     [System.Serializable]
@@ -25,13 +25,19 @@ public class MinigameManager : MonoBehaviour
     public Transform beatDotHolder;
     public Transform textEffectHolder;
     public Animator cameraAnimator;
+    public Image background;
 
     [Header("Game Dot Window")]
     public float DotStartPos = 550;
     public List<Score> scoreWindow;
     public float inputOutOfRange;
     public GameObject loseEffectTextPrefab;
-    public GameObject DotExplodeEffect;
+    public GameObject dotExplodeEffect;
+
+    [Header("Visuals")]
+    public Sprite[] queenBackgrounds;
+    public GameObject[] modelModules;
+    public Animator modelAnim;
 
     [Header("Debug")]
     public bool running;
@@ -64,12 +70,23 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    public void SetLook()
+    {
+        background.sprite = queenBackgrounds[(int)abilityToUnlock];
+
+        modelModules[0].SetActive(GameManager_New.instance.GetPlayerInstance().HasHorns);
+        modelModules[1].SetActive(GameManager_New.instance.GetPlayerInstance().HasWings);
+        modelModules[2].SetActive(GameManager_New.instance.GetPlayerInstance().HasClaws);
+        modelModules[3].SetActive(GameManager_New.instance.GetPlayerInstance().HasFins);
+    }
+
     public void StartMiniGame(eAbility abilityToUnlock, List<BeatInput> beats, float distanceBetweenDots)
     {
         this.abilityToUnlock = abilityToUnlock;
         this.beats = beats;        
         this.distanceBetweenDots = distanceBetweenDots;
 
+        SetLook();
         StartCoroutine(StartGame());
     }
 
@@ -184,7 +201,7 @@ public class MinigameManager : MonoBehaviour
         Instantiate( won < 0 ? loseEffectTextPrefab : scoreWindow[won].effectTextPrefab, textEffectHolder, false);
 
         //Instantiate vfx explode
-        Instantiate(DotExplodeEffect, currentBeat.transform.position - Vector3.forward, Quaternion.identity);
+        Instantiate(dotExplodeEffect, currentBeat.transform.position - Vector3.forward, Quaternion.identity);
 
         if(won >= 0)
         {

@@ -8,12 +8,14 @@ public class DialogueManager : MonoBehaviour {
     public List<Dialogue> dialogues = new List<Dialogue>();
     public int startDialogue;
     public bool startOnAwake;
-    bool started;
+    public bool running;
+
+    private bool didmessage;
 
     void Start() {
         if (startOnAwake)
         {
-            SetDialogue();
+            SetDialogue(startDialogue);
         }
     }
 
@@ -23,23 +25,35 @@ public class DialogueManager : MonoBehaviour {
         Start();
     }*/
 
-    public void SetDialogue()
+    public void SetDialogue(int startPoint)
     {
         if (GameManager_New.instance.dialogueController != null)
         {
             GameManager_New.instance.dialogueController.active = true;
-            GameManager_New.instance.dialogueController.SetList(dialogues, startDialogue);
-            GameManager_New.instance.SetGameState(eGameState.cutscene);
-            started = true;
+            GameManager_New.instance.dialogueController.SetList(dialogues, startPoint);
+            GameManager_New.instance.SetGameState(eGameState.cutscene);        
         }
     }
 
     void Update()
     {
-        if(started && GameManager_New.instance.dialogueController.ended)
+        if (GameManager_New.instance.dialogueController != null)
         {
-            SendMessage("OnDialogueExit", SendMessageOptions.DontRequireReceiver);
-            started = false;
+            if (GameManager_New.instance.dialogueController.dialogues != dialogues)
+            {
+                running = false;
+                return;
+            }
+
+            running = GameManager_New.instance.dialogueController.active;
+        }
+
+        if(running) { didmessage = false; }
+
+        if (!running && !didmessage && GameManager_New.instance.dialogueController.ended && dialogues[GameManager_New.instance.dialogueController.currentDialogue].endAfter)
+        {
+            gameObject.SendMessageUpwards("OnDialogueExit", dialogues[GameManager_New.instance.dialogueController.currentDialogue].endDialogueCommand, SendMessageOptions.DontRequireReceiver);
+            didmessage = true;
         }
     }
 }

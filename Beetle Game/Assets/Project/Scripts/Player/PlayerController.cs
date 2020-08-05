@@ -414,10 +414,10 @@ public class PlayerController : MonoBehaviour
 
     public void SetAbilities()
     {
-        HasHorns = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.horn);
-        HasClaws = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.claw);
-        HasWings = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.wings);
-        HasFins = GameManager_New.instance.abilityManager.IsAbilityUnlocked(eAbility.water);
+        HasHorns = GameManager_New.instance.abilityManager.IsAbilityActive(eAbility.horn);
+        HasClaws = GameManager_New.instance.abilityManager.IsAbilityActive(eAbility.claw);
+        HasWings = GameManager_New.instance.abilityManager.IsAbilityActive(eAbility.wings);
+        HasFins = GameManager_New.instance.abilityManager.IsAbilityActive(eAbility.water);
 
         UpdatePlayerLook();
     }
@@ -432,12 +432,9 @@ public class PlayerController : MonoBehaviour
         GameManager_New.instance.UI_Update_Player(bugName, health, resourcesOnPlayer);
     }
 
-    public void DepleteResourcesToBase()
+    public int GetResourceAmount()
     {
-        GameManager_New.instance.AddResourcesToBase(resourcesOnPlayer);
-        resourcesOnPlayer = 0;
-
-        UpdateUIToGameManager();
+        return resourcesOnPlayer;
     }
 
     public void UpdatePlayerLook()
