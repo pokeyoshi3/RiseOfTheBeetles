@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1981552644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1981552645}
+  - component: {fileID: 1981552647}
+  - component: {fileID: 1981552646}
+  m_Layer: 5
+  m_Name: Img_DialogueOptions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1981552645
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981552644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 822406272243854525}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 740.98, y: 142}
+  m_SizeDelta: {x: -1481.9666, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1981552647
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981552644}
+  m_CullTransparentMesh: 0
+--- !u!114 &1981552646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981552644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5273884, g: 1, b: 0.427451, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &274266310410416830
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 856677607412579132}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Tail_Main_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4750952964839735817}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Foot_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4211657780284298967}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Wing_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,13 +175,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 822406271350820383}
+  - component: {fileID: 578442737}
+  - component: {fileID: 578442736}
   m_Layer: 5
-  m_Name: QueenDialog
+  m_Name: Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &822406271350820383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -122,11 +199,51 @@ RectTransform:
   m_Father: {fileID: 822406272997742552}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 800}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 287.84973}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!225 &578442737
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822406271350820382}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &578442736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822406271350820382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c7a37eb7cfd814dbaa08d0796d4c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aud: {fileID: 0}
+  dialogues: []
+  currentDialogue: 0
+  panels:
+  - panelObject: {fileID: 822406272243854524}
+    dialogueText: {fileID: 822406272403597757}
+    characterImage: {fileID: 0}
+    hasImage: 0
+    options: []
+    hasOptions: 0
+    anim: {fileID: 0}
+  active: 0
+  ingame: 0
+  currentText: 
+  stopKey: 0
+  ended: 0
 --- !u!1 &822406271409244106
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +304,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -266,6 +385,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -372,6 +493,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -517,6 +640,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -570,7 +695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 35, y: 44}
+  m_AnchoredPosition: {x: 34.999756, y: 44}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &822406271836765122
@@ -596,6 +721,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.100000024, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -671,6 +798,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -775,6 +904,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -850,6 +981,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -906,7 +1039,7 @@ GameObject:
   - component: {fileID: 822406272243854523}
   - component: {fileID: 822406272243854522}
   m_Layer: 5
-  m_Name: Img_Dialog
+  m_Name: Img_Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -925,6 +1058,7 @@ RectTransform:
   m_Children:
   - {fileID: 822406272880452207}
   - {fileID: 822406272403597756}
+  - {fileID: 1981552645}
   m_Father: {fileID: 822406271350820383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -956,6 +1090,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.7924528, g: 0.78123885, b: 0.78123885, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1031,6 +1167,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1087,7 +1225,7 @@ GameObject:
   - component: {fileID: 822406272403597754}
   - component: {fileID: 822406272403597757}
   m_Layer: 5
-  m_Name: Text_DIalog
+  m_Name: Text_DIalogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,10 +1245,10 @@ RectTransform:
   m_Father: {fileID: 822406272243854525}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 460, y: 340}
+  m_SizeDelta: {x: -130.76196, y: -81.72632}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &822406272403597754
 CanvasRenderer:
@@ -1135,6 +1273,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1151,7 +1291,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I only like bugs with muscles and money.
+  m_Text: null_error()
 --- !u!1 &822406272600743682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1420,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1382,7 +1524,7 @@ GameObject:
   - component: {fileID: 822406272880452205}
   - component: {fileID: 822406272880452204}
   m_Layer: 5
-  m_Name: Img_DialogBackground
+  m_Name: Img_DialogueBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1402,10 +1544,10 @@ RectTransform:
   m_Father: {fileID: 822406272243854525}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 400}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &822406272880452205
 CanvasRenderer:
@@ -1430,6 +1572,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1494,7 +1638,7 @@ Canvas:
   m_GameObject: {fileID: 822406272997742556}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 7271633411042472157}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1503,8 +1647,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingLayerID: -1878632747
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &822406272997742554
 MonoBehaviour:
@@ -1630,6 +1774,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1703,6 +1849,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1785,6 +1933,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.09829593, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1858,6 +2008,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1884,7 +2036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 160215140370496726}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1923,7 +2075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4645141905860739128}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Shoulder_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1954,7 +2106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1077811579885319970}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_Tip_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1986,7 +2138,7 @@ GameObject:
   - component: {fileID: 3496241987119178531}
   - component: {fileID: 2283050202185029433}
   - component: {fileID: 589788205077573986}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2037,6 +2189,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2059,7 +2213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1656417282708677410}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: DotHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2095,7 +2249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1206575936081976830}
   - component: {fileID: 3154998356040055322}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Claws_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2131,6 +2285,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2196,7 +2351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3845277760082014884}
   - component: {fileID: 2159457527557132789}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Horn_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2232,6 +2387,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2291,7 +2447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8373262377949131565}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Shoulder_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2324,7 +2480,7 @@ GameObject:
   - component: {fileID: 306330713117431994}
   - component: {fileID: 1516807640048461821}
   - component: {fileID: 2853264454625195366}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2373,6 +2529,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2396,7 +2554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2304902780862497946}
   - component: {fileID: 4909773064160397070}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Cape_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2432,6 +2590,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2533,6 +2692,7 @@ MonoBehaviour:
   canvasFader: {fileID: 3409665063558517895}
   abilityManager: {fileID: 7271633411737062506}
   minigameManager: {fileID: 4038745130720568219}
+  dialogueController: {fileID: 578442736}
 --- !u!114 &7271633411737062506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2554,7 +2714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5320529671767408240}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Knee_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2585,7 +2745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 906477804186942438}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Ellbow_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2616,7 +2776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8198235919050142611}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_Tip_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2646,7 +2806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6422572080922730337}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Wing_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2677,7 +2837,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518029481211367052}
   - component: {fileID: 54847596465395329}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Camera Anim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2727,7 +2887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 11986543137441486}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2761,7 +2921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 61637765826337624}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Cape_Main_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2792,7 +2952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559380556757567989}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_Base_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7921542957547963643}
   - component: {fileID: 7377096814703874711}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Minigame_Cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2900,7 +3060,7 @@ GameObject:
   - component: {fileID: 7033475972001656835}
   - component: {fileID: 2728349886309880218}
   - component: {fileID: 1924799358558392044}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: TextSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2956,7 +3116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5534020375148082290}
   - component: {fileID: 8826611599723039218}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Neck_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2992,6 +3152,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3048,7 +3209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4391352032942300673}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_Main_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3079,7 +3240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127641355639757170}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Cape_Base_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3110,7 +3271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9193735847545641096}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Clevicle_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3146,7 +3307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6324469070716344964}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Character_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3179,7 +3340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4135161728722086239}
   - component: {fileID: 7378509113964475902}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Eye_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3215,6 +3376,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3272,7 +3434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5780026991594583926}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Hip_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3306,7 +3468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7844691366674000926}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: modules
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3341,7 +3503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1282317580977874271}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3371,7 +3533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3472723479141149129}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Neck_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3403,7 +3565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3193592039131143884}
   - component: {fileID: 1601324622127457066}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Spikes_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3439,6 +3601,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3492,7 +3655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4701605080903019632}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: MAIN_CTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3523,7 +3686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294669594015757609}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Tail_Tip_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3553,7 +3716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1503314950758737140}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Waist_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3584,7 +3747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7370109031244810753}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3616,7 +3779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7577783180678822043}
   - component: {fileID: 2276470285415418567}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Water_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3652,6 +3815,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3717,7 +3881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 466551632883759664}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_Main_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3748,7 +3912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4478295093640108206}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Leg_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3779,7 +3943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6175101350147609856}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Cape_Tip_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3809,7 +3973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3010371302391923420}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Tail_Base_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3843,7 +4007,7 @@ GameObject:
   - component: {fileID: 7108672084711406841}
   - component: {fileID: 5731277372289151409}
   - component: {fileID: 6225804701818825954}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Minigame_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3940,7 +4104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816350084427915673}
   - component: {fileID: 8315289493857547166}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Body_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3977,6 +4141,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4052,7 +4217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5523701891896327934}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Leg_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4184,7 +4349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5041663370746154095}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Foot_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4267,6 +4432,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4317,7 +4484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8629812495238414768}
   - component: {fileID: 5962862832775888544}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Wings_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4353,6 +4520,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4413,7 +4581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8720844914249853732}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4524,7 +4692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4422111234630870190}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Ellbow_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4557,7 +4725,7 @@ GameObject:
   - component: {fileID: 1648362466906510862}
   - component: {fileID: 8305196388236613266}
   - component: {fileID: 2955415730985562426}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4607,6 +4775,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.39090592, g: 0.19406372, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4629,7 +4799,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2774802709452563316}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Antenna_R_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4660,7 +4830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7311450906655255106}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Knee_L_J
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4693,7 +4863,7 @@ GameObject:
   - component: {fileID: 3088835976947642225}
   - component: {fileID: 7309700687542723402}
   - component: {fileID: 4038745130720568219}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Minigame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
